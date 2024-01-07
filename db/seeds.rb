@@ -6,3 +6,8 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+#管理者(Admin)に権限を付与する
+Admin.create!(
+	email: 'ConnectHeart@gmail.com',
+	password: 'ConnectHeart'
+)
