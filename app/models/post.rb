@@ -4,10 +4,10 @@ class Post < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :post_comments, dependent: :destroy
   has_many :post_tags, dependent: :destroy
-  
+
   #ActiveStorage(画像)
   has_one_attached :image
-  
+
   def get_image(width, height)
     #imageが空でないかの条件分岐
 	  unless image.attached?
@@ -17,5 +17,9 @@ class Post < ApplicationRecord
 	  end
 	  #画像のリサイズを
 		image.variant(resize_to_limit: [width, height]).processed
-	end
+  end
+
+  #enumで状況ステータスの設定
+  #里親募集中:0, トライアル中:1, 里親決定:2, 迷子探し中:
+  enum status: {recruiting: 0, trial: 1, decision: 2, lost_child: 3}
 end

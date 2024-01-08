@@ -1,2 +1,48 @@
-<h1>Public::Posts#new</h1>
-<p>Find me in app/views/public/posts/new.html.erb</p>
+<h2>新規登録</h2>
+<%= form_with model: @post, url: posts_path, method: :post do |f| %>
+  <table>
+    <tr>
+      <th><%= f.label :動物の名前 %></th>
+      <td><%= f.text_field :name %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :性別 %></th>
+      </td>
+        <%= f.radio_button :sex, :male %>
+        <%= f.label :sex_male, "オス" %>
+        <%= f.radio_button :sex, :female %>
+        <%= f.label :sex_female, "メス" %>
+      </td>
+    </tr>
+    <tr>
+      <th><%= f.label :年齢 %></th>
+      <td><%= f.text_field :age %> 才</td>
+    </tr>
+    <tr>
+      <th><%= f.label :種類 %></th>
+      <td><%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name) %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :状況ステータス %></th>
+      <td>
+        <%#= f.radio_button :status, 0 %>
+        <%#= f.label %>
+        <%#= f.radio_button :status, 1 %>
+        <%#= f.label %>
+        <%#= f.radio_button :status, 2 %>
+        <%#= label %>
+      </td>
+    </tr>
+    <tr>
+      <th><%= f.label :動物の性格 %></th>
+      <td><%= f.text_area :character %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :投稿文 %></th>
+      <td><%= f.text_area :body %></td>
+    </tr>
+    <tr>
+      <td><%= f.submit "投稿する" %></td>
+    </tr>
+  </table>
+<% end %>
