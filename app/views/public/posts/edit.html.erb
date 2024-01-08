@@ -1,2 +1,52 @@
-<h1>Public::Posts#edit</h1>
-<p>Find me in app/views/public/posts/edit.html.erb</p>
+<h2>投稿編集</h2>
+<%= form_with model: @post, url: post_path(@post.id), method: :patch do |f| %>
+    <div>
+        <%= f.label :画像 %>
+        <%= f.file_field :image %>
+    </div>
+    <div>
+        <%= f.label :動物の名前%>
+        <%= f.text_field :name %>
+    </div>
+    <div>
+        <%= f.label :性別 %>
+        <%= f.radio_button :sex, :オス %>
+        <%= f.label :sex_male, "オス" %>
+        <%= f.radio_button :sex, :メス %>
+        <%= f.label :sex_female, "メス" %>
+    </div>
+    <div>
+        <%= f.label :年齢 %>
+        <%= f.text_field :age %> 才
+    </div>
+    <div>
+        <%= f.label :種類 %>
+        <%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name) %>
+    </div>
+    <div>
+        <%= f.label :状況ステータス %>
+
+        <%= f.radio_button :status, :recruiting %>
+        <%= f.label :status_recruiting, "里親募集中" %>
+
+        <%= f.radio_button :status, :trial %>
+        <%= f.label :status_trial, "トライアル中" %>
+
+        <%= f.radio_button :status, :decision %>
+        <%= f.label :status_decision, "里親様決定しました" %>
+
+        <%= f.radio_button :status, :lost_child %>
+        <%= f.label :status_lost_child, "迷子の動物を探しています" %>
+    </div>
+    <div>
+        <%= f.label :動物の性格 %>
+        <%= f.text_area :character %>
+    </div>
+    <div>
+        <%= f.label :投稿文 %>
+        <%= f.text_area :body %>
+    </div>
+    <div>
+        <%= f.submit "更新する" %>
+    </div>
+<% end %>

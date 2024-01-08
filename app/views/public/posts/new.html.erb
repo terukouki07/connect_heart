@@ -2,18 +2,23 @@
 <%= form_with model: @post, url: posts_path, method: :post do |f| %>
   <table>
     <tr>
+      <th><%= f.label :画像 %></th>
+      <th><%= f.file_field :image %></th>
+    </tr>
+    <tr>
       <th><%= f.label :動物の名前 %></th>
       <td><%= f.text_field :name %></td>
     </tr>
     <tr>
       <th><%= f.label :性別 %></th>
-      </td>
-        <%= f.radio_button :sex, :male %>
+      <td>
+        <%= f.radio_button :sex, :オス %>
         <%= f.label :sex_male, "オス" %>
-        <%= f.radio_button :sex, :female %>
+        <%= f.radio_button :sex, :メス %>
         <%= f.label :sex_female, "メス" %>
       </td>
     </tr>
+
     <tr>
       <th><%= f.label :年齢 %></th>
       <td><%= f.text_field :age %> 才</td>
@@ -25,12 +30,17 @@
     <tr>
       <th><%= f.label :状況ステータス %></th>
       <td>
-        <%#= f.radio_button :status, 0 %>
-        <%#= f.label %>
-        <%#= f.radio_button :status, 1 %>
-        <%#= f.label %>
-        <%#= f.radio_button :status, 2 %>
-        <%#= label %>
+        <%= f.radio_button :status, :recruiting %>
+        <%= f.label :status_recruiting, "里親募集中" %>
+
+        <%= f.radio_button :status, :trial %>
+        <%= f.label :status_trial, "トライアル中" %>
+
+        <%= f.radio_button :status, :decision %>
+        <%= label :status_decision, "里親様決定しました"%>
+
+        <%= f.radio_button :status, :lost_child %>
+        <%= f.label :status_lost_child, "迷子の動物を探しています"%>
       </td>
     </tr>
     <tr>

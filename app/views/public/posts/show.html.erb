@@ -1,2 +1,24 @@
-<h1>Public::Posts#show</h1>
-<p>Find me in app/views/public/posts/show.html.erb</p>
+<h2>詳細ページ</h2>
+<div>
+    <%= image_tag @post.get_image(100,100) %>
+    <%= @post.status_i18n %>
+    <%= @post.name %>
+    <%= @post.sex %>
+    <%= @post.age %>才
+    <%= @post.character %>
+    <%= @post.body %>
+</div>
+<div>
+    <% if @post.customer == current_customer %>
+        <%= link_to "編集する", edit_post_path(@post.id) %>
+        <%= link_to "削除する", post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+    <% else %>
+        いいね
+    <% end %>
+    <%= link_to "ユーザー詳細へ", customer_path(@post.customer.id) %>
+</div>
+<div>
+    <p>
+        お問い合わせはユーザー詳細へをクリック。チャットよりご連絡ください。
+    </p>
+</div>
