@@ -1,2 +1,13 @@
-<h1>Public::Customers#edit</h1>
-<p>Find me in app/views/public/customers/edit.html.erb</p>
+<h2>会員編集</h2>
+<%= form_with model: @customer, url: customer_path(@customer.id), method: :patch do |f| %>
+  <%= f.label :画像 %>
+  <%= f.file_field :profile_image %>
+
+  <%= f.label :名前 %>
+  <%= f.text_field :name %>
+
+  <%= f.label :紹介文 %>
+  <%= f.text_area :introduction %>
+
+  <%= f.submit "更新する" %>
+<% end %>

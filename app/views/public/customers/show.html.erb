@@ -1,2 +1,20 @@
-<h1>Public::Customers#show</h1>
-<p>Find me in app/views/public/customers/show.html.erb</p>
+<h2>会員詳細</h2>
+<%= image_tag @customer.get_profile_image(100,100) %>
+<%= @customer.name %>
+<%= @customer.introduction %>
+<% if @customer == current_customer %>
+  <%= link_to "編集", edit_customer_path(@customer.id) %>
+  <%= link_to "ログアウト", destroy_customer_session_path, method: :delete %>
+<% else %>
+  <%= link_to "チャットする", chat_path(@customer.id) %>
+<% end %>
+
+<% @customer.posts.each do |customer_post| %>
+  <%= image_tag customer_post.get_image(100,100) %>
+  <%= customer_post.status_i18n %>
+  <%= customer_post.name %>
+  <%= customer_post.sex %>
+  <%= customer_post.age %> 才
+  <%= customer_post.character %>
+  <%= customer_post.body %>
+<% end %>

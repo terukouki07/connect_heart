@@ -22,3 +22,22 @@
         お問い合わせはユーザー詳細へをクリック。チャットよりご連絡ください。
     </p>
 </div>
+
+<!--コメント-->
+<h3>コメント</h3>
+<%= form_with model: [@post, @post_comment], url: post_post_comments_path(@post.id), method: :post do |f| %>
+    <%= f.text_area :comment, placeholder: "コメントをここに" %>
+    <%= f.submit "送信" %>
+<% end %>
+
+<!--ある投稿のコメントを全てを1つずつ取り出して表示-->
+<p>総コメント数<%= @post.post_comments.count %> 件</p>
+<% @post.post_comments.each do |post_comment| %>
+   <p><%= image_tag post_comment.customer.get_profile_image(100,100) %></p>
+   <%= post_comment.customer.name %>
+   <%= post_comment.comment %>
+   <%= post_comment.created_at.strftime('%Y年%m月%d日') %>
+   <% if post_comment.customer == current_customer %>
+       <%= link_to "コメントを削除する", post_post_comment_path(post_comment.post_id, post_comment.id), method: :delete %>
+   <% end %>
+<% end %>

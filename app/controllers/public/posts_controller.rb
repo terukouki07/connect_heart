@@ -22,6 +22,7 @@ class Public::PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @post_comment = PostComment.new
   end
 
   def edit
@@ -32,24 +33,20 @@ class Public::PostsController < ApplicationController
     @post = Post.find(params[:id])
     @post.customer_id = current_customer.id
     if @post.update(post_params)
-      flash[:notice] = "投稿を更新しました。"
+      flash[:notice] = "更新しました。"
       redirect_to post_path(@post.id)
     else
-      flash.now[:notice] = "投稿の更新に失敗しました。"
+      flash.now[:notice] = "更新に失敗しました。"
       render :edit
     end
   end
-  
-  
+
+
   def destroy
-    @post = Post.find(params[:id])
-    if @post.destroy
-      flash[:notice] = "投稿を削除しました。"
-      redirect_to posts_path
-    else
-      flash.now[:notice] = "投稿の削除に失敗しました。"
-      render :show 
-    end
+    post = Post.find(params[:id])
+    post.destroy
+    flash[:notice] = "投稿を削除しました。"
+    redirect_to posts_path
   end
 
   private
