@@ -1,2 +1,23 @@
-<h1>Public::Chats#show</h1>
-<p>Find me in app/views/public/chats/show.html.erb</p>
+<%= form_with model: @chat, url: chats_path, method: :post do |f| %>
+    <%= f.text_field :message %>
+    <%= f.hidden_field :room_id %>
+    <%= f.submit %>
+<% end %>
+<table>
+    <thead>
+        <tr>
+            <td>投稿者名</td>
+            <td>投稿内容</td>
+        </tr>
+    </thead>
+    <tbody>
+        <% @chats.each do |chat| %>
+            <tr>
+                <td><%= chat.customer.name %></td>
+                <td><%= chat.message %></td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>
+
+<%= link_to "チャットを終了する", customer_path(@customer.id) %>
