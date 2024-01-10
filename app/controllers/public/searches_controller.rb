@@ -1,14 +1,15 @@
 class Public::SearchesController < ApplicationController
+
   def search
-    #range=>formで選択されたモデル
+    #word=>formで入力された検索ワード, range=>formで選択されたモデル, search=>formで選択された検索方法
     @range = params[:range]
-    
-    #word=>formで入力された検索ワード
-    #search=>formで選択された検索方法
+
     if @range == "Customer"
-      @customers = Customer.looks(params[:search], params[:word])
+      @records = Customer.looks(params[:search], params[:word])
+      redirect_to search_path
     else
-      @posts = Post.looks(params[:search], params[:word])
+      @records = Post.looks(params[:search], params[:word])
+      redirect_to search_path
     end
   end
 end

@@ -1,12 +1,8 @@
 <!--検索されたモデルがCustomerの時 -->
 <% if @range == "Customer" %>
-  <% @customers.each do |customer| %>
-    <%= customer.name %>
+  <%= render 'cutomers/index', users: @records %>
   <% end %>
 <% else %>
 <!--検索されたモデルがPostのとき -->
-  <% @posts.each do |post| %>
-    <%= post.customer.name %>
-    <%= post.name %>
-  <% end %>
+  <%= render 'posts/index', books: @records %>
 <% end %>
