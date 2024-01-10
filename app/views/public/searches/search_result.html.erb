@@ -1,0 +1,12 @@
+<!--検索されたモデルがCustomerの時 -->
+<% if @range == "Customer" %>
+  <% @customers.each do |customer| %>
+    <%= customer.name %>
+  <% end %>
+<% else %>
+<!--検索されたモデルがPostのとき -->
+  <% @posts.each do |post| %>
+    <%= post.customer.name %>
+    <%= post.name %>
+  <% end %>
+<% end %>
