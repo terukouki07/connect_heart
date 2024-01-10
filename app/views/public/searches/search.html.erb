@@ -1,8 +1,20 @@
 <!--検索されたモデルがCustomerの時 -->
 <% if @range == "Customer" %>
-  <%= render 'cutomers/index', users: @records %>
+  <% @records.each do |customer| %>
+    <%= image_tag customer.get_profile_image(100,100) %>
+    <%= customer.name %>
+    <%= customer.introduction %>
+    <%= link_to "詳細へ", customer_path(customer.id) %>
   <% end %>
 <% else %>
 <!--検索されたモデルがPostのとき -->
-  <%= render 'posts/index', books: @records %>
+  <% @records.each do |post| %>
+  <%= image_tag post.get_image(100,100) %>
+  <%= post.name %>
+  <%= post.sex %>
+  <%= post.age %>
+  <%= post.genre.name %>
+  <%= post.character %>
+  <%= post.body %>
+  <% end %>
 <% end %>

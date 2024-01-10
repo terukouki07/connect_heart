@@ -1,5 +1,5 @@
 <h2>会員一覧</h2>
-<%#= render "searches/form" %>
+<%= render "public/searches/form" %>
 <% @customers.each do |customer| %>
   <%= image_tag customer.get_profile_image(100,100) %>
   <%= customer.name %>
