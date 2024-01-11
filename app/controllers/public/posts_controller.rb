@@ -17,7 +17,7 @@ class Public::PostsController < ApplicationController
 
   def index
     #新着順かつページネーションも表示
-    @posts = Post.order(created_at: :desc).page(params[:page]).per(3)
+    @posts = Post.order(created_at: :desc).page(params[:page]).per(6)
   end
 
   def show

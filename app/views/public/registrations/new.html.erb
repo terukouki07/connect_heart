@@ -21,16 +21,16 @@
             </div>
 
             <div class="field form-group row my-4">
-              <%= f.label :password, "パスワード", class: "col-form-label col-sm-4" %>
+              <%= f.label :password, "パスワード",  class: "col-form-label col-sm-4" %>
               <div class="col-sm-8">
-                <%= f.password_field :password, autocomplete: "new-passwod", class: "form-control" %>
+                <%= f.password_field :password, autocomplete: "new-passwod", placeholder: "6文字以上", class: "form-control" %>
               </div>
             </div>
 
             <div class="field form-group row my-4">
               <%= f.label :password_confirmation, "パスワード(確認用)", class: "col-form-label col-sm-4" %>
               <div class="col-sm-8">
-                <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
+                <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "6文字以上", class: "form-control" %>
               </div>
             </div>
 

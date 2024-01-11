@@ -1,10 +1,10 @@
-<h2>ジャンル新規登録</h2>
+<h2>ジャンル登録</h2>
 <%= form_with model: @genre, url: admin_genres_path, method: :post do |f| %>
   <table>
     <tr>
-      <th>ジャンル名</th>
+      <th><%= f.label :name, "ジャンル名" %></th>
       <td><%= f.text_field :name %></td>
-      <td><%= f.submit "新規登録" %></td>
+      <td><%= f.submit "新規登録", class: "btn btn-success" %></td>
     </tr>
   </table>
 <% end %>
