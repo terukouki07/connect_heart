@@ -18,3 +18,9 @@
   <%= customer_post.character %>
   <%= customer_post.body %>
 <% end %>
+
+<p>
+  <% if @customer == current_customer %>
+    <%= link_to"お気に入り記事",favorite_customer_path(@customer) %>
+  <% end %>
+</p>

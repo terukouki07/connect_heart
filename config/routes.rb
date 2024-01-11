@@ -8,14 +8,21 @@ Rails.application.routes.draw do
   scope module: :public do
     root to: 'homes#top'
     get 'about' => 'homes#about', as: 'about'
-    get "search" => "searches#search"
+    get 'search' => 'searches#search'
+    resources :chats, only: [:create, :show]
+
     resources :posts do
       resources :post_comments, only: [:create, :destroy]
       resource :favorite, only: [:create, :index, :destroy]
     end
-    resources :customers, only: [:index, :show, :edit, :update]
-    resources :chats, only: [:create, :show]
-  end
+
+    resources :customers, only: [:index, :show, :edit, :update] do
+      member do
+        get 'favorite'
+      end
+    end
+
+   end
 
   #管理者側のルーティング
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {

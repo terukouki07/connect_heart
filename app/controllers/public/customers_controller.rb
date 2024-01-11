@@ -23,6 +23,12 @@ class Public::CustomersController < ApplicationController
     end
   end
   
+  def favorite
+    @customer = Customer.find(params[:id])
+    favorites= Favorite.where(customer_id: @customer.id).pluck(:post_id)
+    @favorite_posts = Post.find(favorites)
+  end
+  
   private
   def customer_params
     params.require(:customer).permit(:name, :introduction, :profile_image)

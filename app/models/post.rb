@@ -21,7 +21,7 @@ class Post < ApplicationRecord
   end
 
   #enumで状況ステータスの設定
-  #里親募集中:0, トライアル中:1, 里親決定:2, 迷子動物探し中:
+  #里親募集中:0, トライアル中:1, 里親決定:2, 迷子動物捜索中:
   enum status: {recruiting: 0, trial: 1, decision: 2, lost_child: 3}
 
   #favoriteテーブルにcustomer_idが存在するかの真偽
