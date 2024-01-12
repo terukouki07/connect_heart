@@ -1,62 +1,89 @@
 <div class="container">
     <div class="row">
-        <div class="col-md-6">
-            <h2>詳細ページ</h2>
-            <div>
-                <%= image_tag @post.get_image(100,100) %>
-                <%= @post.status_i18n %>
-                <%= @post.name %>
-                <%= @post.sex %>
-                <%= @post.age %>才
-                <%= @post.character %>
-                <%= @post.body %>
-            </div>
-            <div>
-                <% if @post.customer == current_customer %>
-                    <%= link_to "編集する", edit_post_path(@post.id) %>
-                    <%= link_to "削除する", post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
-                <% else %>
-                    <!--ある投稿のfavoritesテーブルにcurrent_customerのidが含まれているかの真偽。含まれているtrue,含まれていないfalse-->
-                    <% if @post.favorited_by?(current_customer) %>
-                        <%= link_to post_favorite_path(@post.id), method: :delete do %>
-                            ♥<%= @post.favorites.count %> いいね
+        <div class="col-md-4">
+            <table class="table table-bordered text-center">
+                <tr>
+                    <td><%= image_tag @post.get_image(100,100) %></td>
+                </tr>
+                <tr>
+                    <td><%= @post.status_i18n %></td>
+                </tr>
+                <tr>
+                    <td><%= @post.name %></td>
+                </tr>
+                <tr>
+                    <td><%= @post.sex %></td>
+                </tr>
+                <tr>
+                    <td><%= @post.age %>才</td>
+                </tr>
+                <tr>
+                    <td><%= @post.character %></td>
+                </tr>
+                <tr>
+                    <td><%= @post.body %></td>
+                </tr>
+                <tr>
+                    <td>
+                        <% if @post.customer == current_customer %>
+                            <%= link_to "編集する", edit_post_path(@post.id) %>
+                            <%= link_to "削除する", post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+                        <% else %>
+                            <!--ある投稿のfavoritesテーブルにcurrent_customerのidが含まれているかの真偽。含まれているtrue,含まれていないfalse-->
+                            <% if @post.favorited_by?(current_customer) %>
+                                <%= link_to post_favorite_path(@post.id), method: :delete do %>
+                                    ♥<%= @post.favorites.count %> いいね
+                                <% end %>
+                            <% else %>
+                                <%= link_to post_favorite_path(@post.id), method: :post do %>
+                                    ♡<%= @post.favorites.count %> いいね
+                                <% end %>
+                            <% end %>
                         <% end %>
-                    <% else %>
-                        <%= link_to post_favorite_path(@post.id), method: :post do %>
-                            ♡<%= @post.favorites.count %> いいね
-                        <% end %>
-                    <% end %>
-                <% end %>
-                <%= link_to "ユーザー詳細へ", customer_path(@post.customer.id) %>
-            </div>
-            <div>
-                <p>
-                    お問い合わせはユーザー詳細へをクリック。チャットよりご連絡ください。
-                </p>
-            </div>
+                        <%= link_to "ユーザー詳細へ", customer_path(@post.customer.id) %>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        お問い合わせはユーザー詳細へをクリック。<br>
+                        チャットよりご連絡ください。
+                    </td>
+                </tr>
+            </table>
         </div>
-        <div class="col-md-5 offset-1">
-            <!--コメント-->
-            <h3>コメント</h3>
-            <%= form_with model: [@post, @post_comment], url: post_post_comments_path(@post.id), method: :post do |f| %>
-                <%= f.text_area :comment, placeholder: "コメントをここに" %>
-                <%= f.submit "送信" %>
-            <% end %>
 
+        <div class="col-md-4 offset-md-2">
+            <h3>コメント</h3>
             <!--ある投稿のコメントを全てを1つずつ取り出して表示-->
-            <p>総コメント数<%= @post.post_comments.count %> 件</p>
-            <% @post.post_comments.each do |post_comment| %>
-               <p><%= image_tag post_comment.customer.get_profile_image(100,100) %></p>
-               <%= post_comment.customer.name %>
-               <%= post_comment.comment %>
-               <%= post_comment.created_at.strftime('%Y年%m月%d日') %>
-               <% if post_comment.customer == current_customer %>
-                   <%= link_to "コメントを削除する", post_post_comment_path(post_comment.post_id, post_comment.id), method: :delete %>
-               <% end %>
+            <p>総コメント数 <%= @post.post_comments.count %>件</p>
+            <div class="row">
+                <% @post.post_comments.each do |post_comment| %>
+                    <div class="col-md-1">
+                       <%= image_tag post_comment.customer.get_profile_image(50,50) %>
+                   </div>
+                   <div class="col-md-10 offset-md-1 py-md-3 pl-md-0">
+                       <span class="font-weight-bold"><%= post_comment.customer.name %></span>
+                       <span class="px-md-1"><%= post_comment.comment %></span>
+                       <span class="text-secondary"><%= post_comment.created_at.strftime('%-m月%-d日') %></span>
+                       <% if post_comment.customer == current_customer %>
+                           <%= link_to "削除", post_post_comment_path(post_comment.post_id, post_comment.id), method: :delete, class: "text-danger" %>
+                       <% end %>
+                   </div>
+                <% end %>
+            </div>
+
+            <%= form_with model: [@post, @post_comment], url: post_post_comments_path(@post.id), method: :post do |f| %>
+                <div class="row">
+                    <div class="col-md-11 form_label">
+                        <%= f.text_area :comment, class: "form-control", style: "width:100%", rows: "1", placeholder: "コメントをここに" %>
+                    </div>
+                    <div class="col-md-1 pl-md-0">
+                        <%= f.submit "送信", class: "btn btn-link px-md-0" %>
+                    </div>
+                </div>
             <% end %>
         </div>
     </div>
 </div>
-
 
 
