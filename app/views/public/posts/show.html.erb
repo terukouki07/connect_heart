@@ -1,55 +1,53 @@
 <div class="container">
     <div class="row">
         <div class="col-md-4">
-            <table class="table table-bordered text-center">
-                <tr>
-                    <td><%= image_tag @post.get_image(100,100) %></td>
-                </tr>
-                <tr>
-                    <td><%= @post.status_i18n %></td>
-                </tr>
-                <tr>
-                    <td><%= @post.name %></td>
-                </tr>
-                <tr>
-                    <td><%= @post.sex %></td>
-                </tr>
-                <tr>
-                    <td><%= @post.age %>才</td>
-                </tr>
-                <tr>
-                    <td><%= @post.character %></td>
-                </tr>
-                <tr>
-                    <td><%= @post.body %></td>
-                </tr>
-                <tr>
-                    <td>
-                        <% if @post.customer == current_customer %>
-                            <%= link_to "編集する", edit_post_path(@post.id) %>
-                            <%= link_to "削除する", post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+            <div class="row">
+                <%#= image_tag @post.get_image(380,300) %>
+                <%= image_tag "https://dummyimage.com/380x300/000/fff" %>
+                <table class="table table-bordered">
+                    <tr>
+                        <th>状況</th>
+                        <td><%= @post.status_i18n %></td>
+                    </tr>
+                    <tr>
+                        <th>名前</th>
+                        <td><%= @post.name %></td>
+                    </tr>
+                    <tr>
+                        <th>性別</th>
+                        <td><%= @post.sex %></td>
+                    </tr>
+                    <tr>
+                        <th>年齢</th>
+                        <td><%= @post.age %>才</td>
+                    </tr>
+                    <tr>
+                        <th>性格</th>
+                        <td><%= @post.character %></td>
+                    </tr>
+                    <tr>
+                        <th>本文</th>
+                        <td><%= @post.body %></td>
+                    </tr>
+                </table>
+                <div>
+                     <% if @post.customer == current_customer %>
+                        <span class="mx-md-3"><%= link_to "編集する", edit_post_path(@post.id) %></span>
+                        <span><%= link_to "削除する", post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %></span>
+                    <% else %>
+                        <!--ある投稿のfavoritesテーブルにcurrent_customerのidが含まれているかの真偽。含まれているtrue,含まれていないfalse-->
+                        <% if @post.favorited_by?(current_customer) %>
+                            <%= link_to post_favorite_path(@post.id), method: :delete do %>
+                                <span class="mx-md-3">♥<%= @post.favorites.count %> いいね</span>
+                            <% end %>
                         <% else %>
-                            <!--ある投稿のfavoritesテーブルにcurrent_customerのidが含まれているかの真偽。含まれているtrue,含まれていないfalse-->
-                            <% if @post.favorited_by?(current_customer) %>
-                                <%= link_to post_favorite_path(@post.id), method: :delete do %>
-                                    ♥<%= @post.favorites.count %> いいね
-                                <% end %>
-                            <% else %>
-                                <%= link_to post_favorite_path(@post.id), method: :post do %>
-                                    ♡<%= @post.favorites.count %> いいね
-                                <% end %>
+                            <%= link_to post_favorite_path(@post.id), method: :post do %>
+                                <span class="mx-md-3">♡<%= @post.favorites.count %> いいね</span>
                             <% end %>
                         <% end %>
-                        <%= link_to "ユーザー詳細へ", customer_path(@post.customer.id) %>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        お問い合わせはユーザー詳細へをクリック。<br>
-                        チャットよりご連絡ください。
-                    </td>
-                </tr>
-            </table>
+                    <% end %>
+                </div>
+            </div>
         </div>
 
         <div class="col-md-4 offset-md-2">
@@ -83,6 +81,14 @@
                 </div>
             <% end %>
         </div>
+    </div>
+    <div class="row border border-2 pt-md-3 mt-md-3 d-md-flex justify-content-md-center">
+        <p class="font-weight-bold">
+            お問い合わせは
+            <%= link_to "こちら", customer_path(@post.customer.id) %>
+            から、チャットにてご連絡をお願いします。
+            コメントやチャットには、思いやりの心を大切に、楽しく利用しましょう。
+        </p>
     </div>
 </div>
 

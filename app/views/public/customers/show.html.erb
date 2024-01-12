@@ -1,26 +1,47 @@
-<h2>会員詳細</h2>
-<%= image_tag @customer.get_profile_image(100,100) %>
-<%= @customer.name %>
-<%= @customer.introduction %>
-<% if @customer == current_customer %>
-  <%= link_to "編集", edit_customer_path(@customer.id) %>
-  <%= link_to "ログアウト", destroy_customer_session_path, method: :delete %>
-<% else %>
-  <%= link_to "チャットする", chat_path(@customer.id) %>
-<% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+    <!--未完成ここから-->
+      <h2>会員詳細</h2>
+      <div>
+        <%= image_tag @customer.get_profile_image(100,100) %>
+      </div>
+      <div>
+        <%= @customer.name %>
+        <%= @customer.introduction %>
+      </div>
+      <div>
+        <% if @customer == current_customer %>
+          <%= link_to "編集", edit_customer_path(@customer.id) %>
+          <%= link_to "ログアウト", destroy_customer_session_path, method: :delete %>
+        <% else %>
+          <%= link_to "チャットする", chat_path(@customer.id) %>
+        <% end %>
+      </div>
+      <p>
+        <% if @customer == current_customer %>
+          <%= link_to"お気に入り記事",favorite_customer_path(@customer) %>
+        <% end %>
+      </p>
+    <!--ここまで-->
+    </div>
+    
+    <div class="col-md-6 offset-md-2">
+      <div class="row">
+        <% @customer.posts.each do |customer_post| %>
+          <div class="col-md-3">
+            <%= image_tag customer_post.get_image(100,100) %>
+          </div>
+          <div class="col-md-2 font-weight-bold px-md-0 d-md-flex align-items-center">
+            <%= customer_post.name %>
+          </div>
+          <div class="col-md-4 offset-md-3 d-md-flex align-items-center">
+            <%= link_to "詳細へ", post_path(customer_post.id), class: "btn btn-info" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
 
-<% @customer.posts.each do |customer_post| %>
-  <%= image_tag customer_post.get_image(100,100) %>
-  <%= customer_post.status_i18n %>
-  <%= customer_post.name %>
-  <%= customer_post.sex %>
-  <%= customer_post.age %> 才
-  <%= customer_post.character %>
-  <%= customer_post.body %>
-<% end %>
-
-<p>
-  <% if @customer == current_customer %>
-    <%= link_to"お気に入り記事",favorite_customer_path(@customer) %>
-  <% end %>
-</p>
+<%= render "public/searches/form" %>

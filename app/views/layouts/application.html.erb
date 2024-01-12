@@ -17,6 +17,7 @@
       <ul>
         <% if admin_signed_in? %>
           <li><%= link_to "ジャンル一覧", admin_genres_path %></li>
+          <li><%= link_to "コメント管理", admin_post_comments_path %></li>
           <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete %></li>
         <% elsif customer_signed_in? %>
           <li><%= link_to "新規投稿", new_post_path %></li>
