@@ -1,10 +1,10 @@
 <div class="container">
     <div class="row">
         <div class="col-md-3">
-            <%= image_tag "https://dummyimage.com/150x150/000/fff" %>
-            <ul>
-                <li><%= link_to "マイページ", customer_path(current_customer.id) %></li>
-                <li><%= link_to "お気に入り", favorite_customer_path(current_customer.id) %></li>
+            <%= image_tag "https://dummyimage.com/190x150/000/fff" %>
+            <ul class="list-group w-75 mt-md-3 text-center">
+                <li class="list-group-item"><%= link_to "マイページ", customer_path(current_customer.id) %></li>
+                <li class="list-group-item"><%= link_to "お気に入り", favorite_customer_path(current_customer.id) %></li>
             </ul>
         </div>
 
@@ -34,10 +34,8 @@
                 <% end %>
             </div>
         </div>
-
-        <div class="col-md-3">
-            <h4 class="text-center">Category</h4>
-        </div>
+        <!--ジャンルのサイドバー-->
+        <%= render "admin/genres/genre", genres: @genres %>
     </div>
 </div>
 <!--ページネーション-->

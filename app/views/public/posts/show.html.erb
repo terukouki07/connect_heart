@@ -1,6 +1,6 @@
 <div class="container">
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-4 offset-md-1">
             <div class="row">
                 <%#= image_tag @post.get_image(380,300) %>
                 <%= image_tag "https://dummyimage.com/380x300/000/fff" %>
@@ -61,7 +61,7 @@
             <div class="row">
                 <% @post.post_comments.each do |post_comment| %>
                     <div class="col-md-1">
-                       <%= image_tag post_comment.customer.get_profile_image(50,50) %>
+                       <%= image_tag post_comment.customer.get_profile_image(50,50), class: "rounded-circle" %>
                    </div>
                    <div class="col-md-10 offset-md-1 py-md-3 pl-md-0">
                        <span class="font-weight-bold"><%= post_comment.customer.name %></span>

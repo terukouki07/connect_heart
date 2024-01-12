@@ -5,7 +5,7 @@
       <div class="row">
         <% @customers.each do |customer| %>
         <div class="col-md-3 text-md-center">
-          <%= image_tag customer.get_profile_image(100,100) %>
+          <%= image_tag customer.get_profile_image(100,100), class: "rounded-circle" %>
         </div>
         <div class="col-md-2 font-weight-bold px-md-0 d-md-flex align-items-center">
           <%= customer.name %>

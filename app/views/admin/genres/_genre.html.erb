@@ -1,0 +1,13 @@
+<div class="col-md-2 offset-1 px-md-0">
+  <div>
+  <h4 class="border-bottom">Category</h4>
+  <% genres.each do |genre| %>
+    <ul class="row list-group">
+      <li class="list-group-item">
+        <span class="col-md-6"><%= link_to genre.name %></span>
+        <span class="col-md-6 pl-md-5 ml-md-5"><%= genre.post.count %></span>
+      </li>
+    </ul>
+  <% end %>
+  </div>
+</div>
