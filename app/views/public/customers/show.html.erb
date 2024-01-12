@@ -1,32 +1,42 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-4">
-    <!--未完成ここから-->
-      <h2>会員詳細</h2>
-      <div>
-        <%= image_tag @customer.get_profile_image(100,100) %>
+    <div class="col-md-3 offset-md-1">
+      <div class="row">
+        <%#= image_tag @customer.get_profile_image(285,205) %>
+        <%= image_tag "https://dummyimage.com/285x205/000/fff" %>
+        <table class="table table-bordered">
+          <tr>
+            <th>名前</th>
+            <td><%= @customer.name %></td>
+          </tr>
+          <tr>
+            <th>自己紹介</th>
+            <td><%= @customer.introduction %></td>
+          </tr>
+        </table>
       </div>
-      <div>
-        <%= @customer.name %>
-        <%= @customer.introduction %>
+      <div class="row">
+          <% if @customer == current_customer %>
+            <div class="col-md-5 offset-1">
+              <%= link_to "編集", edit_customer_path(@customer.id), class: "btn btn-info" %>
+            </div>
+            <div class="col-md-6">
+              <%= link_to "お気に入り",favorite_customer_path(@customer), class: "btn btn-info" %>
+            </div>
+          <% else %>
+            <div class="col-md-5 offset-md-1">
+              <%= link_to "DM", chat_path(@customer.id), class: "btn btn-info" %>
+            </div>
+            <div class="col-md-6">
+              <%= link_to "マイページ", customer_path(current_customer.id), class: "btn btn-info" %>
+            </div>
+          <% end %>
       </div>
-      <div>
-        <% if @customer == current_customer %>
-          <%= link_to "編集", edit_customer_path(@customer.id) %>
-          <%= link_to "ログアウト", destroy_customer_session_path, method: :delete %>
-        <% else %>
-          <%= link_to "チャットする", chat_path(@customer.id) %>
-        <% end %>
-      </div>
-      <p>
-        <% if @customer == current_customer %>
-          <%= link_to"お気に入り記事",favorite_customer_path(@customer) %>
-        <% end %>
-      </p>
-    <!--ここまで-->
     </div>
-    
+
     <div class="col-md-6 offset-md-2">
+      <h3>投稿</h3>
+      <p class="font-weight-bold">投稿 <%= @customer.posts.count %>件</p>
       <div class="row">
         <% @customer.posts.each do |customer_post| %>
           <div class="col-md-3">
@@ -43,5 +53,3 @@
     </div>
   </div>
 </div>
-
-<%= render "public/searches/form" %>
