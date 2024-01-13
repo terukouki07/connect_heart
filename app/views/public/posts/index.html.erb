@@ -1,21 +1,21 @@
 <div class="container">
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-sm-3">
             <%= image_tag "https://dummyimage.com/190x150/000/fff" %>
-            <ul class="list-group w-75 mt-md-3 text-center">
+            <ul class="list-group w-75 mt-sm-3 text-center">
                 <li class="list-group-item"><%= link_to "マイページ", customer_path(current_customer.id) %></li>
                 <li class="list-group-item"><%= link_to "お気に入り", favorite_customer_path(current_customer.id) %></li>
             </ul>
         </div>
 
-        <div class="col-md-6">
+        <div class="col-sm-6">
             <div class="row">
                 <%= image_tag "https://dummyimage.com/570x400/000/fff" %>
             </div>
-            <h4 class="my-md-3">新着投稿</h4>
+            <h4 class="my-sm-3">新着投稿</h4>
             <div class="row">
                 <% @posts.each do |post| %>
-                    <div class="col-md-4">
+                    <div class="col-sm-4">
                         <table class="table table-bordered">
                             <tr>
                                 <td class="text-center"><%= image_tag post.get_image(100,100) %></td>
@@ -39,7 +39,7 @@
     </div>
 </div>
 <!--ページネーション-->
-<div class="d-md-flex justify-content-md-center">
+<div class="d-sm-flex justify-content-sm-center">
     <%= paginate @posts %>
 </div>
 

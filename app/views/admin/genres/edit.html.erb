@@ -1,10 +1,24 @@
-<h2>ジャンル編集</h2>
-<%= form_with model: @genre, url: admin_genre_path(@genre.id), method: :patch do |f| %>
-  <table>
-    <tr>
-      <th>ジャンル名</th>
-      <td><%= f.text_field :name %></td>
-      <td><%= f.submit "更新する" %></td>
-    </tr>
-  </table>
-<% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6 offset-sm-3 card">
+      <div class="card-body">
+        <h2 class="my-sm-3 text-secondary">ジャンル編集</h2>
+        <%= form_with model: @genre, url: admin_genre_path(@genre.id), method: :patch do |f| %>
+
+          <div class="row form-group">
+            <div class="col-sm-3 offset-sm-1">
+              <%= f.label :name, "ジャンル名", class: "col-form-label" %>
+            </div>
+            <div class="col-sm-5">
+              <%= f.text_field :name, class: "form-control" %>
+            </div>
+            <div class="col-sm-2">
+              <%= f.submit "更新", class: "btn btn-info" %>
+            </div>
+          </div>
+
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

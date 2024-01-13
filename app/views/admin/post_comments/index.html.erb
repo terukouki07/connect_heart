@@ -1,18 +1,18 @@
 <div class="container">
   <h3>コメント管理</h3>
-  <table class="table mt-3">
+  <table class="table mt-sm-3">
     <tr>
-      <th class="col-2">名前</th>
-      <th class="col-8">コメント</th>
-      <th class="col-1"></th>
-      <th class="col-1"></th>
+      <th class="col-sm-2">名前</th>
+      <th class="col-sm-8">コメント</th>
+      <th class="col-sm-1"></th>
+      <th class="col-sm-1"></th>
     </tr>
     <% @post_comments.each do |post_comment| %>
       <tr>
-        <td class="col-2"><%= @customers.find(post_comment.customer_id).name %></td>
-        <td class="col-8"><%= post_comment.comment %></td>
-        <td class="col-1"><%= post_comment.created_at.strftime('%Y/%m/%d') %></td>
-        <td class="col-1">
+        <td class="colsm-2"><%= @customers.find(post_comment.customer_id).name %></td>
+        <td class="col-sm-8"><%= post_comment.comment %></td>
+        <td class="col-sm-1"><%= post_comment.created_at.strftime('%Y/%-m/%-d') %></td>
+        <td class="col-sm-1">
         <%= link_to '削除', admin_post_comment_path(post_comment.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-sm btn-danger" %>
         </td>
       </tr>
@@ -21,6 +21,6 @@
 </div>
 
 <!--ページネーション-->
-<div class="d-md-flex justify-content-md-center">
+<div class="d-sm-flex justify-content-sm-center">
   <%= paginate @post_comments %>
 </div>

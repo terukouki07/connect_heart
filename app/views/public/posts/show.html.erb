@@ -1,6 +1,6 @@
 <div class="container">
     <div class="row">
-        <div class="col-md-4 offset-md-1">
+        <div class="col-sm-4 offset-sm-1">
             <div class="row">
                 <%#= image_tag @post.get_image(380,300) %>
                 <%= image_tag "https://dummyimage.com/380x300/000/fff" %>
@@ -33,39 +33,39 @@
             </div>
             <div class="row">
                 <% if @post.customer == current_customer %>
-                    <div class="col-md-5 offset-md-1">
+                    <div class="col-sm-5 offset-sm-1">
                         <%= link_to "編集する", edit_post_path(@post.id), class: "btn btn-info"  %>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-sm-6">
                         <%= link_to "削除する", post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-info"  %>
                     </div>
                 <% else %>
                     <!--ある投稿のfavoritesテーブルにcurrent_customerのidが含まれているかの真偽。含まれているtrue,含まれていないfalse-->
                     <% if @post.favorited_by?(current_customer) %>
                         <%= link_to post_favorite_path(@post.id), method: :delete do %>
-                            <div class="col-md-12">♥<%= @post.favorites.count %> いいね</div>
+                            <div class="col-sm-12">♥<%= @post.favorites.count %> いいね</div>
                         <% end %>
                     <% else %>
                         <%= link_to post_favorite_path(@post.id), method: :post do %>
-                            <div class="col-md-12">♡<%= @post.favorites.count %> いいね</div>
+                            <div class="col-sm-12">♡<%= @post.favorites.count %> いいね</div>
                         <% end %>
                     <% end %>
                 <% end %>
             </div>
         </div>
 
-        <div class="col-md-4 offset-md-2">
+        <div class="col-sm-4 offset-sm-2">
             <h3>コメント</h3>
             <!--ある投稿のコメントを全てを1つずつ取り出して表示-->
             <p class="font-weight-bold">コメント <%= @post.post_comments.count %>件</p>
             <div class="row">
                 <% @post.post_comments.each do |post_comment| %>
-                    <div class="col-md-1">
+                    <div class="col-sm-1">
                        <%= image_tag post_comment.customer.get_profile_image(50,50), class: "rounded-circle" %>
                    </div>
-                   <div class="col-md-10 offset-md-1 py-md-3 pl-md-0">
+                   <div class="col-sm-10 offset-sm-1 py-sm-3 pl-sm-0">
                        <span class="font-weight-bold"><%= post_comment.customer.name %></span>
-                       <span class="px-md-1"><%= post_comment.comment %></span>
+                       <span class="px-sm-1"><%= post_comment.comment %></span>
                        <span class="text-secondary"><%= post_comment.created_at.strftime('%-m月%-d日') %></span>
                        <% if post_comment.customer == current_customer %>
                            <%= link_to "削除", post_post_comment_path(post_comment.post_id, post_comment.id), method: :delete, class: "text-danger" %>
@@ -76,17 +76,17 @@
 
             <%= form_with model: [@post, @post_comment], url: post_post_comments_path(@post.id), method: :post do |f| %>
                 <div class="row">
-                    <div class="col-md-11 form_label">
+                    <div class="col-sm-11 form_label">
                         <%= f.text_area :comment, class: "form-control", style: "width:100%", rows: "1", placeholder: "コメントをここに" %>
                     </div>
-                    <div class="col-md-1 pl-md-0">
-                        <%= f.submit "送信", class: "btn btn-link px-md-0" %>
+                    <div class="col-sm-1 pl-sm-0">
+                        <%= f.submit "送信", class: "btn btn-link px-sm-0" %>
                     </div>
                 </div>
             <% end %>
         </div>
     </div>
-    <div class="row border border-2 pt-md-3 my-md-3 d-md-flex justify-content-md-center">
+    <div class="row border border-2 pt-sm-3 my-sm-3 d-sm-flex justify-content-sm-center">
         <p class="font-weight-bold">
             お問い合わせは
             <%= link_to "こちら", customer_path(@post.customer.id) %>

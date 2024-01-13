@@ -1,31 +1,50 @@
-<h2>ジャンル登録</h2>
-<%= form_with model: @genre, url: admin_genres_path, method: :post do |f| %>
-  <table>
-    <tr>
-      <th><%= f.label :name, "ジャンル名" %></th>
-      <td><%= f.text_field :name %></td>
-      <td><%= f.submit "新規登録", class: "btn btn-success" %></td>
-    </tr>
-  </table>
-<% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-8">
 
+      <div class="card">
+        <div class="card-body">
+          <h2 class="text-secondary">ジャンル新規登録</h2>
+          <%= form_with model: @genre, url: admin_genres_path, method: :post do |f| %>
+            <div class="row form-group">
+              <div class="col-sm-2 offset-sm-1">
+                <%= f.label :name, "ジャンル名", class: "col-form-label text-secondary" %>
+              </div>
+              <div class="col-sm-5">
+                <%= f.text_field :name, class: "form-control" %>
+              </div>
+              <div class="col-sm-2">
+                <%= f.submit "登録", class: "btn btn-info" %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
 
-<h2>ジャンル一覧</h2>
-<table>
-  <thead>
-    <tr>
-      <th>ジャンル名</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @genres.each do |genre| %>
-      <tr>
-        <td><%= genre.name %></td>
-        <td>
-          <%= link_to "編集する", edit_admin_genre_path(genre.id) %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+      <div class="row">
+        <div class="col-sm-6 mt-sm-4">
+          <h2 class="text-secondary">ジャンル一覧</h2>
+          <table class="table">
+            <thead>
+              <tr>
+                <th class="text-secondary">ジャンル名</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @genres.each do |genre| %>
+                <tr>
+                  <td class="text-secondary pl-sm-5 pt-sm-3"><%= genre.name %></td>
+                  <td>
+                    <%= link_to "編集", edit_admin_genre_path(genre.id), class: "btn btn-info" %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
