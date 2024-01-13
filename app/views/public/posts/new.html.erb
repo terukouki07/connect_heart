@@ -2,29 +2,29 @@
   <div class="row">
     <div class="col-sm-6 offset-sm-3 card">
       <div class="card-body">
-       <h2>新規投稿</h2>
+       <h2 class="my-sm-3 text-secondary">新規投稿</h2>
        <%= form_with model: @post, url: posts_path, method: :post do |f| %>
 
-         <div class="row">
-           <div class="col-sm-3">
+         <div class="row form-group">
+           <div class="col-sm-3 offset-sm-1">
              <%= f.label :image, "画像" %>
            </div>
            <div class="col-sm-7">
-             <%= f.file_field :image %>
+             <%= f.file_field :image, accept: "image/*" %>
            </div>
          </div>
 
-         <div class="row">
-           <div class="col-sm-3">
-             <%= f.label :name, "動物名" %>
+         <div class="row form-group">
+           <div class="col-sm-3 offset-sm-1">
+             <%= f.label :name, "動物名", class: "col-form-label" %>
            </div>
-           <div class="col-sm7">
-             <%= f.text_field :name %>
+           <div class="col-sm-7">
+             <%= f.text_field :name, class: "form-control" %>
            </div>
          </div>
 
-         <div class="row">
-           <div class="col-sm-3">
+         <div class="row form-group">
+           <div class="col-sm-3 offset-sm-1">
              <%= f.label :sex, "性別" %>
            </div>
            <div class="col-sm-7">
@@ -35,17 +35,17 @@
            </div>
          </div>
 
-         <div class="row">
-           <div class="col-sm-3">
-             <%= f.label :age, "年齢" %>
+         <div class="row form-group">
+           <div class="col-sm-3 offset-sm-1">
+             <%= f.label :age, "年齢" , class: "col-form-label"%>
            </div>
            <div class="col-sm-7">
-             <%= f.text_field :age %> 才
+             <%= f.text_field :age, class: "form-control", placeholder: "1" %>
            </div>
          </div>
 
-         <div class="row">
-           <div class="col-sm-3">
+         <div class="row form-group">
+           <div class="col-sm-3 offset-sm-1">
              <%= f.label :genre_id, "ジャンル" %>
            </div>
            <div class="col-sm-7">
@@ -53,40 +53,30 @@
            </div>
          </div>
 
-         <div class="row">
-           <div class="col-sm-3">
+         <div class="row form-group">
+           <div class="col-sm-3 offset-sm-1">
              <%= f.label :status, "状況" %>
            </div>
-           <div class="col-sm-9">
-             <%= f.radio_button :status, :recruiting %>
-             <%= f.label :status_recruiting, "里親募集中" %>
-
-             <%= f.radio_button :status, :trial %>
-             <%= f.label :status_trial, "トライアル中" %>
-
-             <%= f.radio_button :status, :decision %>
-             <%= label :status_decision, "里親様決定"%>
-
-             <%= f.radio_button :status, :lost_child %>
-             <%= f.label :status_lost_child, "迷子動物捜索中"%>
+           <div class="col-sm-7">
+             <%= f.select :status,{ include_blank: '選択してください' } %>
            </div>
          </div>
 
-         <div class="row">
-           <div class="col-sm-3">
-            <%= f.label :character, "性格" %>
+         <div class="row form-group">
+           <div class="col-sm-3 offset-sm-1">
+            <%= f.label :character, "性格", class: "col-form-label" %>
            </div>
            <div class="col-sm-7">
-            <%= f.text_area :character %>
+            <%= f.text_area :character, class: "form-control" %>
            </div>
          </div>
 
-         <div class="row">
-           <div class="col-sm-3">
-             <%= f.label :body, "本文" %>
+         <div class="row form-group">
+           <div class="col-sm-3 offset-sm-1">
+             <%= f.label :body, "本文", class: "col-form-label" %>
            </div>
            <div class="col-sm-7">
-             <%= f.text_area :body %>
+             <%= f.text_area :body, class: "form-control" %>
            </div>
          </div>
 

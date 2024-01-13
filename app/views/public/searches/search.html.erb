@@ -1,20 +1,42 @@
-<!--検索されたモデルがCustomerの時 -->
-<% if @range == "Customer" %>
-  <% @records.each do |customer| %>
-    <%= image_tag customer.get_profile_image(100,100) %>
-    <%= customer.name %>
-    <%= customer.introduction %>
-    <%= link_to "詳細へ", customer_path(customer.id) %>
-  <% end %>
-<% else %>
-<!--検索されたモデルがPostのとき -->
-  <% @records.each do |post| %>
-  <%= image_tag post.get_image(100,100) %>
-  <%= post.name %>
-  <%= post.sex %>
-  <%= post.age %>
-  <%= post.genre.name %>
-  <%= post.character %>
-  <%= post.body %>
-  <% end %>
-<% end %>
+<div class="container">
+  <div class="row">
+    <% if @range == "Customer" %>
+      <!--検索されたモデルがCustomerの時 -->
+      <% @records.each do |customer| %>
+        <div class="col-sm-2">
+          <table class="table table-bordered">
+            <tr>
+              <td class="text-center"><%= image_tag customer.get_profile_image(100,100) %></td>
+            </tr>
+            <tr>
+              <td><%= customer.name %></td>
+            </tr>
+            <tr>
+              <td><%= link_to "詳細へ", customer_path(customer.id) %></td>
+            </tr>
+          </table>
+        </div>
+      <% end %>
+    <% else %>
+      <!--検索されたモデルがPostのとき -->
+      <% @records.each do |post| %>
+        <div class="col-sm-2">
+          <table class="table table-bordered">
+            <tr>
+              <td class="text-center"><%= image_tag post.get_image(100,100) %></td>
+            </tr>
+            <tr>
+              <td><%= post.status_i18n %></td>
+            </tr>
+            <tr>
+              <td><%= post.name %></td>
+            </tr>
+            <tr>
+              <td><%= link_to "詳細へ", post_path(post.id) %></td>
+            </tr>
+          </table>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
