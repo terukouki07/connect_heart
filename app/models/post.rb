@@ -16,7 +16,7 @@ class Post < ApplicationRecord
 	    file_path = Rails.root.join('app/assets/images/no_image.jpg')
 	    image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
 	  end
-	  #画像のリサイズを
+	  #画像のリサイズを指定。
 		image.variant(resize_to_limit: [width, height]).processed
   end
 

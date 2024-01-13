@@ -1,6 +1,23 @@
-<h2>ジャンル検索結果</h2>
-<% @genre.posts.each do |genre_post| %>
-  <%= image_tag genre_post.get_image(100,100) %>
-  <%= genre_post.name %>
-  <%= genre_post.status_i18n %>
-<% end %>
+<div class="container">
+  <h2 class="my-sm-4">検索結果</h2>
+  <div class="row">
+    <% @genre.posts.each do |genre_post| %>
+      <div class="col-sm-2">
+        <table class="table table-bordered">
+          <tr>
+            <td class="text-center"><%= image_tag genre_post.get_image(100,100) %></td>
+          </tr>
+          <tr>
+            <td><%= genre_post.status_i18n %></td>
+          </tr>
+          <tr>
+            <td><%= genre_post.name %></td>
+          </tr>
+          <tr>
+            <td><%= link_to "詳しく見る", post_path(genre_post.id) %></td>
+          </tr>
+        </table>
+      </div>
+    <% end %>
+  </div>
+</div>
