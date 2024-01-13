@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     get 'about' => 'homes#about', as: 'about'
     get 'search' => 'searches#search'
     resources :chats, only: [:create, :show]
+    resources :genres, only: [:show]
 
     resources :posts do
       resources :post_comments, only: [:create, :destroy]
@@ -22,7 +23,7 @@ Rails.application.routes.draw do
       end
     end
 
-   end
+  end
 
   #管理者側のルーティング
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {

@@ -4,8 +4,8 @@
   <% genres.each do |genre| %>
     <ul class="row list-group">
       <li class="list-group-item">
-        <span class="col-md-6"><%= link_to genre.name %></span>
-        <span class="col-md-6 pl-md-5 ml-md-5"><%= genre.post.count %></span>
+        <span class="col-md-6"><%= link_to genre.name, genre_path(genre.id) %></span>
+        <span class="col-md-6 pl-md-5 ml-md-5"><%= genre.posts.count %></span>
       </li>
     </ul>
   <% end %>

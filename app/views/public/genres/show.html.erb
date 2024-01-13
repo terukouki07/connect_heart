@@ -1,0 +1,6 @@
+<h2>ジャンル検索結果</h2>
+<% @genre.posts.each do |genre_post| %>
+  <%= image_tag genre_post.get_image(100,100) %>
+  <%= genre_post.name %>
+  <%= genre_post.status_i18n %>
+<% end %>
