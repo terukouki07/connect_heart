@@ -39,5 +39,18 @@ class Customer < ApplicationRecord
       @customer = Customer.all
     end
   end
+  
+  #ゲストログイン
+  GUEST_CUSTOMER_EMAIL = "guest@example.com"
+
+  def self.guest
+    #GUEST_CUSTOMER_EMAILがあればデータを返す、なければ、新規作成
+    find_or_create_by!(email: GUEST_CUSTOMER_EMAIL) do |customer|
+      #パスワードをランダムで作成
+      customer.password = SecureRandom.urlsafe_base64
+      customer.name = "ゲストユーザー"
+    end
+  end
+  
 end
 

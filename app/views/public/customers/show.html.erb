@@ -16,21 +16,28 @@
         </table>
       </div>
       <div class="row">
-          <% if @customer == current_customer %>
-            <div class="col-sm-5 offset-sm-1">
-              <%= link_to "編集", edit_customer_path(@customer.id), class: "btn btn-info" %>
-            </div>
-            <div class="col-sm-6">
-              <%= link_to "お気に入り",favorite_customer_path(@customer), class: "btn btn-info" %>
-            </div>
-          <% else %>
-            <div class="col-sm-5 offset-sm-1">
-              <%= link_to "DM", chat_path(@customer.id), class: "btn btn-info" %>
-            </div>
-            <div class="col-sm-6">
-              <%= link_to "マイページ", customer_path(current_customer.id), class: "btn btn-info" %>
-            </div>
-          <% end %>
+        <% if @customer.email == "guest@example.com" %>
+        <!--会員のEmailがguest@example.comのとき-->
+          <div class="col-sm-6 pl-sm-0">
+            <%= link_to "お気に入り",favorite_customer_path(@customer), class: "btn btn-info" %>
+          </div>
+        <% elsif @customer == current_customer %>
+        <!--ログイン者がcurrent_customerのとき-->
+          <div class="col-sm-5 offset-sm-1">
+            <%= link_to "編集", edit_customer_path(@customer.id), class: "btn btn-info" %>
+          </div>
+          <div class="col-sm-6">
+            <%= link_to "お気に入り",favorite_customer_path(@customer), class: "btn btn-info" %>
+          </div>
+        <% else %>
+        <!--ログイン者がcurrent_customerではないとき-->
+          <div class="col-sm-5 offset-sm-1">
+            <%= link_to "DM", chat_path(@customer.id), class: "btn btn-info" %>
+          </div>
+          <div class="col-sm-6">
+            <%= link_to "マイページ", customer_path(current_customer.id), class: "btn btn-info" %>
+          </div>
+        <% end %>
       </div>
     </div>
 

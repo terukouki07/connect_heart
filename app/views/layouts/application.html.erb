@@ -29,6 +29,7 @@
           <li><%= link_to "About", about_path %></li>
           <li><%= link_to "新規登録", new_customer_registration_path %></li>
           <li><%= link_to "ログイン", new_customer_session_path %></li>
+          <li><%= link_to "ゲストログイン", customers_guest_sign_in_path, method: :post %></li>
         <% end %>
       </ul>
       <%= render "public/searches/form" %>
