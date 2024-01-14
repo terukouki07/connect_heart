@@ -1,4 +1,6 @@
 class Public::ChatsController < ApplicationController
+  before_action :authenticate_customer!
+
   def show
     @customer = Customer.find(params[:id])
     rooms = current_customer.customer_rooms.pluck(:room_id)
@@ -15,6 +17,7 @@ class Public::ChatsController < ApplicationController
     @chats = @room.chats
     @chat = Chat.new(room_id: @room.id)
   end
+
   def create
     @chat = current_customer.chats.new(chat_params)
     @chat.save
@@ -22,7 +25,9 @@ class Public::ChatsController < ApplicationController
   end
 
   private
+
   def chat_params
     params.require(:chat).permit(:message, :room_id, :customer_id)
   end
+
 end

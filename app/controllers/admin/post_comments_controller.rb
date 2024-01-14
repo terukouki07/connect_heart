@@ -1,4 +1,6 @@
 class Admin::PostCommentsController < ApplicationController
+  before_action :authenticate_admin!
+  
   def index
     #新着順かつページネーションも表示
     @post_comments= PostComment.order(created_at: :desc).page(params[:page]).per(10)

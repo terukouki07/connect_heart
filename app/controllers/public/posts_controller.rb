@@ -1,4 +1,7 @@
 class Public::PostsController < ApplicationController
+  before_action :authenticate_customer!
+  before_action :is_matching_post, only: [:edit, :update]
+
   def new
     @post = Post.new
   end
@@ -42,7 +45,6 @@ class Public::PostsController < ApplicationController
     end
   end
 
-
   def destroy
     post = Post.find(params[:id])
     post.destroy
@@ -55,4 +57,14 @@ class Public::PostsController < ApplicationController
   def post_params
     params.require(:post).permit(:name, :sex, :age, :body, :character, :status, :image, :customer_id, :genre_id)
   end
+
+  #他のユーザーの編集ページへの遷移を制限
+  def is_matching_post
+    post = Post.find(params[:id])
+    if post.customer.id != current_customer.id
+      flash[:notice] = "他のユーザーのプライベートページへの遷移はできません。"
+      redirect_to root_path
+    end
+  end
+  
 end
