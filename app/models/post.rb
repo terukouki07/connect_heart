@@ -44,6 +44,12 @@ class Post < ApplicationRecord
       @post = Post.all
     end
   end
-  
+
   #バリデーション
+  validates :name, presence: true, length: { maximum: 20 }
+  validates :sex, presence: true
+  validates :age, presence: true
+  validates :body, presence: true, length: { maximum: 50 }
+  validates :character, presence: true, length: { maximum: 50 }
+  validates :status, presence: true
 end

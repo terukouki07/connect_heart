@@ -52,5 +52,9 @@ class Customer < ApplicationRecord
     end
   end
   
+  #バリデーション
+  validates :name, presence: true, length: { maximum: 20 }, uniqueness: true
+  validates :introduction, length: { maximum: 50 }
+  
 end
 
