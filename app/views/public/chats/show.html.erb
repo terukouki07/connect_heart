@@ -1,23 +1,36 @@
-<%= form_with model: @chat, url: chats_path, method: :post do |f| %>
-    <%= f.text_field :message %>
-    <%= f.hidden_field :room_id %>
-    <%= f.submit %>
-<% end %>
-<table>
-    <thead>
-        <tr>
-            <td>投稿者名</td>
-            <td>投稿内容</td>
-        </tr>
-    </thead>
-    <tbody>
-        <% @chats.each do |chat| %>
-            <tr>
-                <td><%= chat.customer.name %></td>
-                <td><%= chat.message %></td>
-            </tr>
-        <% end %>
-    </tbody>
-</table>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4 offset-sm-2">
+            <% @chats.each do |chat| %>
+                <div class="row">
+                    <div class="col-sm-1">
+                        <%=image_tag chat.customer.get_profile_image(50,50), class: "rounded-circle" %>
+                    </div>
+                    <div class="col-sm-10 offset-sm-1 py-sm-3">
+                        <span class="font-weight-bold"><%= chat.customer.name %></span>
+                        <%= chat.message %>
+                    </div>
+                </div>
+            <% end %>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 offset-sm-2 pt-sm-3">
+            <%= form_with model: @chat, url: chats_path, method: :post do |f| %>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <%= f.text_field :message, class: "form-control" %>
+                            <%= f.hidden_field :room_id %>
+                        </div>
+                        <div class="col-sm-2">
+                           <%= f.submit "送信", class: "btn btn-info" %>
+                        </div>
+                    </div>
+                </div>
+            <% end %>
+            <div><%= link_to "チャットを終了する", customer_path(@customer.id) %></div>
+        </div>
+    </div>
+</div>
 
-<%= link_to "チャットを終了する", customer_path(@customer.id) %>
