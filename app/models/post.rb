@@ -29,21 +29,11 @@ class Post < ApplicationRecord
     favorites.exists?(customer_id: customer.id)
   end
 
-  #searchの条件分岐
-  #perfect_match=>完全一致, forward_match=>前方一致, backward_match=>後方一致, partial_match=>部分一致
-  def self.looks(search, word)
-    if search == "perfect_match"
-      @psot = Post.where("name LIKE?", "#{word}")
-    elsif search == "forward_match"
-      @post = Post.where("name LIKE?", "#{word}%")
-    elsif search == "backward_match"
-      @post = Post.where("name LIKE?", "%#{word}")
-    elsif search == "partial_match"
-      @post = Post.where("name LIKE?", "%#{word}%")
-    else
-      @post = Post.all
-    end
+  #wordが完全一致したときpostテーブルからレコード取得。
+  def self.looks(word)
+  	@post = Post.where("name LIKE?", "#{word}")
   end
+
 
   #バリデーション
   validates :name, presence: true, length: { maximum: 20 }

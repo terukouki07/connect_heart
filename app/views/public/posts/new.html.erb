@@ -58,7 +58,7 @@
              <%= f.label :status, "状況" %>
            </div>
            <div class="col-sm-7">
-             <%= f.select :status, Post.statuses.keys.map { |k| [t("enum.post.status.#{k}"), k] }, { include_blank: "指定なし" } %>
+             <%= f.select :status, Post.statuses.keys.map { |k| [t("enums.post.status.#{k}"), k] }, { include_blank: "指定なし" } %>
            </div>
          </div>
 

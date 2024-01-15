@@ -11,11 +11,3 @@ Admin.create!(
 	email: 'ConnectHeart@gmail.com',
 	password: 'ConnectHeart'
 )
-
-# Tag.create([
-#     { name: '里親募集中' },
-#     { name: 'トライアル中' },
-#     { name: '里親様決定'},
-#     { name: '迷子捜索中'},
-#     { name: '飼育の知恵'},
-# ])
