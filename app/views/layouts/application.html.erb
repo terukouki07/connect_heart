@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="h-100">
   <head>
     <title>ConnectHeart</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -11,7 +11,7 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body class="d-flex flex-column h-100">
    <header class="mb-sm-5">
      <nav class="navbar navbar-expand-md navbar-light bg-light">
        <%= link_to "Connect Heart", root_path %>
@@ -79,7 +79,7 @@
      </nav>
    </header>
 
-    <main>
+    <main class="flex-shrink-0">
       <!--フラッシュメッセージを表示-->
       <% flash.each do |message_type, message| %>
         <div class="flash-message <%= message_type %>"><%= message %></div>
@@ -87,7 +87,7 @@
       <%= yield %>
     </main>
 
-    <footer class="mt-5 bg-light py-sm-3">
+    <footer class="mt-auto bg-light py-sm-3">
       <div class="container">
         <div class="row">
           <p class="col-sm-3 offset-sm-5">&copy; CopyRight Infratop.inc</p>
