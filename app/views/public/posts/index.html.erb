@@ -10,7 +10,12 @@
                 <h4 class="border-bottom py-2 mb-3">タグ一覧</h4>
                 <% @tags.each do |tag| %>
                     <ul class="pl-3">
-                        <li><%= link_to tag.name, tag_posts_path(tag.id) %></li>
+                        <li>
+                            <%= link_to tag_posts_path(tag.id) do %>
+                                <%= tag.name %>
+                                <%= tag.posts.count %>
+                            <% end %>
+                        </li>
                     </ul>
                 <% end %>
             </div>
