@@ -1,8 +1,3 @@
-
-<% @tags.each do |tag| %>
-    <%= link_to tag.name, tag_posts_path(tag.id) %>
-<% end %>
-
 <div class="container">
     <div class="row">
         <div class="col-sm-3">
@@ -11,6 +6,14 @@
                 <li class="list-group-item"><%= link_to "マイページ", customer_path(current_customer.id) %></li>
                 <li class="list-group-item"><%= link_to "お気に入り", favorite_customer_path(current_customer.id) %></li>
             </ul>
+            <div class="mt-5 w-75">
+                <h4 class="border-bottom py-2 mb-3">タグ一覧</h4>
+                <% @tags.each do |tag| %>
+                    <ul class="pl-3">
+                        <li><%= link_to tag.name, tag_posts_path(tag.id) %></li>
+                    </ul>
+                <% end %>
+            </div>
         </div>
 
         <div class="col-sm-6">
