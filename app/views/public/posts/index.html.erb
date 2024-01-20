@@ -1,3 +1,8 @@
+
+<% @tags.each do |tag| %>
+    <%= link_to tag.name, tag_posts_path(tag.id) %>
+<% end %>
+
 <div class="container">
     <div class="row">
         <div class="col-sm-3">

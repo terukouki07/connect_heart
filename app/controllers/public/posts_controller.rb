@@ -9,7 +9,9 @@ class Public::PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.customer_id = current_customer.id
+    tag_list = params[:post][:tag_name].split(nil)
     if @post.save
+      @post.save_tag(tag_list)
       flash[:notice] = "投稿しました。"
       redirect_to posts_path
     else
@@ -22,6 +24,7 @@ class Public::PostsController < ApplicationController
     #新着順かつページネーションも表示
     @posts = Post.order(created_at: :desc).page(params[:page]).per(6)
     @genres = Genre.all
+    @tags = Tag.all
   end
 
   def show
@@ -36,7 +39,9 @@ class Public::PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     @post.customer_id = current_customer.id
+    tag_list = params[:post][:tag_name].split(nil)
     if @post.update(post_params)
+      @post.save_tag(tag_list)
       flash[:notice] = "更新しました。"
       redirect_to post_path(@post.id)
     else
@@ -50,6 +55,11 @@ class Public::PostsController < ApplicationController
     post.destroy
     flash[:notice] = "投稿を削除しました。"
     redirect_to posts_path
+  end
+
+  def tag_search
+    @tag = Tag.find(params[:tag_id])
+    @posts = @tag.posts.all
   end
 
   private
@@ -66,5 +76,5 @@ class Public::PostsController < ApplicationController
       redirect_to root_path
     end
   end
-  
+
 end

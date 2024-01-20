@@ -1,0 +1,23 @@
+<div class="container">
+  <h2 class="my-sm-4">タグ検索結果</h2>
+  <div class="row">
+    <% @posts.each do |post_tag| %>
+      <div class="col-sm-2">
+        <table class="table table-bordered">
+          <tr>
+            <td class="text-center"><%= image_tag post_tag.get_image(100,100) %></td>
+          </tr>
+          <tr>
+            <td><%= post_tag.status_i18n %></td>
+          </tr>
+          <tr>
+            <td><%= post_tag.name %></td>
+          </tr>
+          <tr>
+            <td><%= link_to "詳細へ", post_path(post_tag.id) %></td>
+          </tr>
+        </table>
+      </div>
+    <% end %>
+  </div>
+</div>

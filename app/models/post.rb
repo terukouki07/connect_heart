@@ -34,6 +34,29 @@ class Post < ApplicationRecord
   	@post = Post.where("name LIKE?", "#{word}")
   end
 
+  #タグ検索
+  def save_tag(tag_list)
+    current_tags = self.tags.pluck(:name) unless self.tags.nil?
+    old_tags = current_tags - tag_list
+    new_tags = tag_list - current_tags
+    #古いタグを削除(更新時)
+    old_tags.each do |old|
+      target_tag = Tag.find_by(name: old)
+      PostTag.find_by(post_id: self.id, tag_id: target_tag.id).delete
+
+      target_tag = Tag.find_by(name: old)
+      # 何件存在するか分かる
+      target_tag_post_count = target_tag.posts.count 
+      if target_tag_post_count == 0
+        target_tag.delete
+      end
+    end
+    #新しいタグをDBへ保存(新規登録時)
+    new_tags.each do |new|
+      new_post_tag = Tag.find_or_create_by(name: new)
+      self.tags.push(new_post_tag)
+    end
+  end
 
   #バリデーション
   validates :name, presence: true, length: { maximum: 20 }

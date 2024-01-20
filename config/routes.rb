@@ -21,6 +21,11 @@ Rails.application.routes.draw do
       resource :favorite, only: [:create, :index, :destroy]
     end
 
+    resources :tags do
+      get 'posts' => 'posts#tag_search'
+    end
+    #
+
     resources :customers, only: [:index, :show, :edit, :update] do
       member do
         get 'favorite'
