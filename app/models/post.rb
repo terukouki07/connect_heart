@@ -17,7 +17,7 @@ class Post < ApplicationRecord
 	    image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
 	  end
 	  #画像のリサイズを指定。
-		image.variant(resize_to_limit: [width, height]).processed
+		image.variant(resize_to_fill: [width, height]).processed
   end
 
   #enumで状況ステータスの設定

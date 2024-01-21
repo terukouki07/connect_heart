@@ -4,7 +4,7 @@
       <h4>おすすめ</h4>
       <div class="row">
         <% @customers.each do |customer| %>
-        <div class="col-sm-3 text-sm-center">
+        <div class="col-sm-3 text-sm-center my-sm-2">
           <%= image_tag customer.get_profile_image(100,100), class: "rounded-circle" %>
         </div>
         <div class="col-sm-2 font-weight-bold px-sm-0 d-sm-flex align-items-center">
