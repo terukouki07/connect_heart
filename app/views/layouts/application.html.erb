@@ -79,7 +79,7 @@
      </nav>
    </header>
 
-    <main class="flex-shrink-0">
+    <main class="flex-shrink-0 mb-sm-3">
       <!--フラッシュメッセージを表示-->
       <% flash.each do |message_type, message| %>
         <div class="flash-message <%= message_type %>"><%= message %></div>
@@ -87,10 +87,10 @@
       <%= yield %>
     </main>
 
-    <footer class="mt-auto bg-light py-sm-3">
+    <footer class="mt-auto bg-light py-sm-4">
       <div class="container">
         <div class="row">
-          <p class="col-sm-3 offset-sm-5">&copy; CopyRight Infratop.inc</p>
+          <p class="col-sm-3 offset-sm-5 mb-sm-0"><small>&copy; CopyRight Infratop.inc</small></p>
         </div>
       </div>
     </footer>
