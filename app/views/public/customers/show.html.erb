@@ -1,47 +1,62 @@
 <div class="container">
   <div class="row">
-    <div class="col-sm-3 offset-sm-1">
-      <div class="row">
-        <%= image_tag @customer.get_profile_image(285,285), class: "w-100 h-100" %>
 
-        <table class="table table-bordered">
-          <tr>
-            <th>ユーザー名</th>
-            <td><%= @customer.name %></td>
-          </tr>
-          <tr>
-            <th>自己紹介</th>
-            <td><%= @customer.introduction %></td>
-          </tr>
-        </table>
+    <div class="col-sm-6">
+      <div class="row">
+        <h2 class="heading heading2 w-100 pb-sm-3 mb-sm-5"><%= @customer.name %>の詳細</h2>
       </div>
       <div class="row">
-        <% if @customer.email == "guest@example.com" %>
-        <!--会員のEmailがguest@example.comのとき-->
-          <div class="col-sm-6 pl-sm-0">
-            <%= link_to "お気に入り",favorite_customer_path(@customer), class: "btn btn-info" %>
+        <div class="col-sm-6 pl-sm-0">
+          <%= image_tag @customer.get_profile_image(270,270), class: "w-100 h-100" %>
+        </div>
+        <div class="col-sm-6">
+          <dl>
+            <div class="row pt-sm-5 mt-sm-4">
+              <dt class="col-sm-5">ユーザー名</dt>
+              <dd class="col-sm-6"><%= @customer.name %></dd>
+            </div>
+            <div class="row">
+              <dt class="col-sm-5">登録日</dt>
+              <dd class="col-sm-6"><%= @customer.created_at.strftime('%Y/%m/%d') %></dd>
+            </div>
+          </dl>
+          <div class="row">
+            <% if @customer.email == "guest@example.com" %>
+              <!--会員のEmailがguest@example.comのとき-->
+              <div class="col-sm-6 pl-sm-0">
+                <%= link_to "お気に入り",favorite_customer_path(@customer), class: "btn btn-info" %>
+              </div>
+            <% elsif @customer == current_customer %>
+              <!--ログイン者がcurrent_customerのとき-->
+              <div class="col-sm-4">
+                <%= link_to "編集", edit_customer_path(@customer.id), class: "btn btn-info" %>
+              </div>
+              <div class="col-sm-6">
+                <%= link_to "お気に入り",favorite_customer_path(@customer), class: "btn btn-info" %>
+              </div>
+            <% else %>
+              <!--ログイン者がcurrent_customerではないとき-->
+              <div class="col-sm-4 offset-sm-1">
+                <%= link_to "DM", chat_path(@customer.id), class: "btn btn-info" %>
+              </div>
+              <div class="col-sm-5">
+                <%= link_to "マイページ", customer_path(current_customer.id), class: "btn btn-info" %>
+              </div>
+            <% end %>
           </div>
-        <% elsif @customer == current_customer %>
-        <!--ログイン者がcurrent_customerのとき-->
-          <div class="col-sm-5 offset-sm-1">
-            <%= link_to "編集", edit_customer_path(@customer.id), class: "btn btn-info" %>
-          </div>
-          <div class="col-sm-6">
-            <%= link_to "お気に入り",favorite_customer_path(@customer), class: "btn btn-info" %>
-          </div>
-        <% else %>
-        <!--ログイン者がcurrent_customerではないとき-->
-          <div class="col-sm-5 offset-sm-1">
-            <%= link_to "DM", chat_path(@customer.id), class: "btn btn-info" %>
-          </div>
-          <div class="col-sm-6">
-            <%= link_to "マイページ", customer_path(current_customer.id), class: "btn btn-info" %>
-          </div>
-        <% end %>
+        </div>
       </div>
+
+      <div class="row mt-sm-5 pt-sm-3">
+          <h3 class="heading heading2 w-100 pb-sm-3 mb-sm-3">自己紹介</h3>
+      </div>
+      <div class="row mt-sm-2">
+        <p><%= @customer.introduction %></p>
+      </div>
+
     </div>
 
-    <div class="col-sm-6 offset-sm-2">
+    <div class="col-sm-5 offset-sm-1">
       <h3>投稿</h3>
       <p class="font-weight-bold mb-sm-1">投稿 <%= @customer.posts.count %>件</p>
       <div class="row">
@@ -49,7 +64,7 @@
           <div class="col-sm-3 my-sm-2">
             <%= image_tag customer_post.get_image(100,100) %>
           </div>
-          <div class="col-sm-2 font-weight-bold my-sm-2 px-sm-0 d-sm-flex align-items-center">
+          <div class="col-sm-2 font-weight-bold my-sm-2 pr-sm-0 d-sm-flex align-items-center">
             <%= customer_post.name %>
           </div>
           <div class="col-sm-4 offset-sm-3 d-sm-flex my-sm-2 align-items-center">
@@ -58,5 +73,6 @@
         <% end %>
       </div>
     </div>
+
   </div>
 </div>

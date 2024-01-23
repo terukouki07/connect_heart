@@ -1,13 +1,13 @@
 <div class="col-md-2 offset-1 px-md-0">
   <div>
-  <h4>Category</h4>
-  <% genres.each do |genre| %>
-    <ul class="row list-group">
-      <li class="list-group-item">
-        <span class="col-md-6"><%= link_to genre.name, genre_path(genre.id) %></span>
-        <span class="col-md-6 pl-md-5 ml-md-5"><%= genre.posts.count %></span>
-      </li>
-    </ul>
-  <% end %>
+    <h4 class="mb-3">CATEGORY</h4>
+    <% genres.each do |genre| %>
+      <ul class="row list-group">
+        <li class="list-group-item">
+          <span class="col-md-6"><%= link_to genre.name, genre_path(genre.id), class: "text-body" %></span>
+          <span class="col-md-6 pl-md-5 ml-md-5"><%= genre.posts.count %></span>
+        </li>
+      </ul>
+    <% end %>
   </div>
 </div>
