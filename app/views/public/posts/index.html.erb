@@ -1,13 +1,14 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-3">
-            <%= image_tag "https://dummyimage.com/190x150/000/fff" %>
+            <div class="post-side-image">
+            </div>
             <ul class="list-group w-75 mt-sm-3 text-center">
                 <li class="list-group-item"><%= link_to "マイページ", customer_path(current_customer.id) %></li>
                 <li class="list-group-item"><%= link_to "お気に入り", favorite_customer_path(current_customer.id) %></li>
             </ul>
             <div class="mt-5 w-75">
-                <h4 class="border-bottom py-2 mb-3">タグ一覧</h4>
+                <h4 class="border-bottom py-2 mb-3">タグ</h4>
                 <% @tags.each do |tag| %>
                     <ul class="pl-3">
                         <li>
@@ -23,7 +24,10 @@
 
         <div class="col-sm-6">
             <div class="row">
-                <%= image_tag "https://dummyimage.com/570x400/000/fff" %>
+                <div class="post-image">
+                    <h2 class="text-center text-white post-header">Connect Heart</h2>
+                    <p class="text-center text-white">人間と動物の心を繋ぐサイト</p>
+                </div>
             </div>
             <h4 class="my-sm-3">新着投稿</h4>
             <div class="row">

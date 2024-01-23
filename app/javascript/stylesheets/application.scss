@@ -3,7 +3,32 @@
 //   background-image: url("../images/hoge.jpg");
 // }
 
+// homes/top.html.erb
+.top-image{
+  background-image: url("../images/animal-2632836_1920.jpg") ;
+  background-size: cover ;
+}
+
 .top{
   padding-top: 360px ;
   padding-bottom: 150px ;
+}
+
+// posts/index.html.erb
+.post-image{
+  background-image: url("../images/cat-3699032_640.jpg") ;
+  width: 570px ;
+  height: 400px ;
+  background-size: cover ;
+}
+
+.post-header{
+  padding-top: 260px ;
+}
+
+.post-side-image{
+  background-image: url("../images/heart.png") ;
+  width: 190px ;
+  height: 180px ;
+  background-size: cover ;
 }
