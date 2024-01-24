@@ -23,15 +23,15 @@
           <div class="row">
             <% if @customer.email == "guest@example.com" %>
               <!--会員のEmailがguest@example.comのとき-->
-              <div class="col-sm-6">
+              <div class="col-sm-7">
                 <%= link_to "お気に入り",favorite_customer_path(@customer), class: "btn btn-info" %>
               </div>
             <% elsif @customer == current_customer %>
               <!--ログイン者がcurrent_customerのとき-->
               <div class="col-sm-5">
-                <%= link_to "編集へ", edit_customer_path(@customer.id), class: "btn btn-info" %>
+                <%= link_to "編集", edit_customer_path(@customer.id), class: "btn btn-info" %>
               </div>
-              <div class="col-sm-6">
+              <div class="col-sm-7">
                 <%= link_to "お気に入り",favorite_customer_path(@customer), class: "btn btn-info" %>
               </div>
             <% else %>
@@ -39,7 +39,7 @@
               <div class="col-sm-5">
                 <%= link_to "DMへ", chat_path(@customer.id), class: "btn btn-info" %>
               </div>
-              <div class="col-sm-6">
+              <div class="col-sm-7">
                 <%= link_to "マイページ", customer_path(current_customer.id), class: "btn btn-info" %>
               </div>
             <% end %>
