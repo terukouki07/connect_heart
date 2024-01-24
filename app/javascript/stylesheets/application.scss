@@ -1,5 +1,5 @@
 @use '~bootstrap/scss/bootstrap';
-
+// header
 .logo{
   width:100px;
   height:80px;
@@ -9,13 +9,13 @@
 .top-image{
   background-image: url("../images/animal-2632836_1920.jpg") ;
   background-size: cover ;
-  width : 100% ;
-  height: 100% ;
+  width : 100vw ;
+  height: calc(100vh - 95.99px - 72px) ;
 }
 
 .top{
-  padding-top: 360px ;
-  padding-bottom: 150px ;
+  padding-top: 430px ;
+  padding-left: 110px;
 }
 
 // posts/index.html.erb
@@ -51,4 +51,8 @@
 
 .tag_head{
   border-bottom: 1px solid #6dbec8 ;
+}
+
+.field_with_errors{
+  display: contents ;
 }

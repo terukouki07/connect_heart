@@ -12,7 +12,7 @@
   </head>
 
   <body class="d-flex flex-column h-100">
-   <header class="mb-sm-5">
+   <header <%= action_name == "top"? '': 'class="mb-sm-5"'.html_safe %>>
      <nav class="navbar navbar-expand-md navbar-light bg-light">
        <%= link_to root_path do %>
          <%= image_tag "logo.png", class: "logo" %>
@@ -81,7 +81,7 @@
      </nav>
    </header>
 
-    <main class="flex-shrink-0 mb-sm-3">
+    <main class="flex-shrink-0 <%= action_name == "top"? '': 'mb-sm-3'.html_safe %>">
       <!--フラッシュメッセージを表示-->
       <% flash.each do |message_type, message| %>
         <div class="flash-message <%= message_type %>"><%= message %></div>

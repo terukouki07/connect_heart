@@ -189,19 +189,54 @@ ja: #日本語設定を行う
         short: "%m/%d %H:%M"
       pm: 午後
 
-# ja:
-#   activerecord:
-#     errors:
-#       models:
-#         post:
-#           attributes:
-#             name:
-#               blank: "名前を入力してください"
-#             age:
-#               blank: "年齢を入力してください"
-#             sex:
-#               blank: "性別を入力してください"
-#             body:
-#               blank: "本文を入力してください"
-#             character:
-#               blank: "性格の入力してください"
+
+  activerecord:
+    errors:
+      models:
+        post:
+          attributes:
+            name:
+              blank: "を入力してください"
+            age:
+              blank: "を入力してください"
+            sex:
+              blank: "を入力してください"
+            body:
+              blank: "を入力してください"
+            character:
+              blank: "の入力してください"
+            status:
+              blank: "を選択してください"
+
+
+        customer:
+          attributes:
+            name:
+              blank: "を入力してください"
+            email:
+              blank: "を入力してください"
+            password:
+              blank: "を入力してください"
+
+        genre:
+          attributes:
+            name:
+              blank: "を入力してください"
+
+
+    attributes:
+      post:
+        name: "名前"
+        age: "年齢"
+        sex: "性別"
+        body: "本文"
+        character: "性格"
+        status: "状況"
+
+      customer:
+        name: "ユーザー名"
+        email: "メールアドレス"
+        password: "パスワード"
+
+      genre:
+        name: "ジャンル名"
