@@ -46,7 +46,7 @@ class Post < ApplicationRecord
 
       target_tag = Tag.find_by(name: old)
       # 何件存在するか分かる
-      target_tag_post_count = target_tag.posts.count 
+      target_tag_post_count = target_tag.posts.count
       if target_tag_post_count == 0
         target_tag.delete
       end
@@ -62,7 +62,7 @@ class Post < ApplicationRecord
   validates :name, presence: true, length: { maximum: 20 }
   validates :sex, presence: true
   validates :age, presence: true
-  validates :body, presence: true, length: { maximum: 50 }
-  validates :character, presence: true, length: { maximum: 50 }
+  validates :body, presence: true, length: { maximum: 200 }
+  validates :character, presence: true, length: { maximum: 200 }
   validates :status, presence: true
 end

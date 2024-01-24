@@ -1,63 +1,74 @@
 <div class="container">
     <div class="row">
-        <div class="col-sm-4 offset-sm-1">
+        <div class="col-sm-6">
             <div class="row">
-                <%= image_tag @post.get_image(380,380), class: "w-100 h-100" %>
-
-                <table class="table table-bordered">
-                    <tr>
-                        <th>状況</th>
-                        <td><%= @post.status_i18n %></td>
-                    </tr>
-                    <tr>
-                        <th>名前</th>
-                        <td><%= @post.name %></td>
-                    </tr>
-                    <tr>
-                        <th>性別</th>
-                        <td><%= @post.sex %></td>
-                    </tr>
-                    <tr>
-                        <th>年齢</th>
-                        <td><%= @post.age %>才</td>
-                    </tr>
-                    <tr>
-                        <th>性格</th>
-                        <td><%= @post.character %></td>
-                    </tr>
-                    <tr>
-                        <th>本文</th>
-                        <td><%= @post.body %></td>
-                    </tr>
-                </table>
+                <h2 class="heading heading2 w-100 pb-sm-3 mb-sm-5"><%= @post.customer.name %>の投稿</h2>
             </div>
+
             <div class="row">
-                <% if @post.customer == current_customer %>
-                    <div class="col-sm-5 offset-sm-1">
-                        <%= link_to "編集する", edit_post_path(@post.id), class: "btn btn-info"  %>
-                    </div>
-                    <div class="col-sm-6">
-                        <%= link_to "削除する", post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-info"  %>
-                    </div>
-                <% else %>
-                    <!--ある投稿のfavoritesテーブルにcurrent_customerのidが含まれているかの真偽。含まれているtrue,含まれていないfalse-->
-                    <% if @post.favorited_by?(current_customer) %>
-                        <%= link_to post_favorite_path(@post.id), method: :delete do %>
-                            <div class="col-sm-12">♥<%= @post.favorites.count %> いいね</div>
-                        <% end %>
-                    <% else %>
-                        <%= link_to post_favorite_path(@post.id), method: :post do %>
-                            <div class="col-sm-12">♡<%= @post.favorites.count %> いいね</div>
-                        <% end %>
-                    <% end %>
-                <% end %>
+                <div class="col-sm-6 pl-sm-0">
+                    <%= image_tag @post.get_image(270,270), class: "w-100 h-100" %>
+                </div>
+                <div class="col-sm-6 pl-sm-5">
+                    <dl>
+                        <div class="row pt-sm-5">
+                            <dt class="col-sm-3">状況</dt>
+                            <dd class="col-sm-9"><%= @post.status_i18n %></dd>
+                        </div>
+                        <div class="row">
+                            <dt class="col-sm-3">名前</dt>
+                            <dd class="col-sm-9"><%= @post.name %></dd>
+                        </div>
+                        <div class="row">
+                            <dt class="col-sm-3">性別</dt>
+                            <dd class="col-sm-9"><%= @post.sex %></dd>
+                        </div>
+                        <div class="row">
+                            <dt class="col-sm-3">年齢</dt>
+                            <dd class="col-sm-9"><%= @post.age %> 才</dd>
+                        </div>
+                        <div class="row mt-sm-2">
+                            <% if @post.customer == current_customer %>
+                                <div class="col-sm-5">
+                                    <%= link_to "編集", edit_post_path(@post.id), class: "btn btn-info"  %>
+                                </div>
+                                <div class="col-sm-7">
+                                    <%= link_to "削除", post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-info"  %>
+                                </div>
+                            <% else %>
+                                <!--ある投稿のfavoritesテーブルにcurrent_customerのidが含まれているかの真偽。含まれているtrue,含まれていないfalse-->
+                                <% if @post.favorited_by?(current_customer) %>
+                                    <%= link_to post_favorite_path(@post.id), method: :delete do %>
+                                        <div class="col-sm-12">♥<%= @post.favorites.count %> いいね</div>
+                                    <% end %>
+                                <% else %>
+                                    <%= link_to post_favorite_path(@post.id), method: :post do %>
+                                        <div class="col-sm-12">♡<%= @post.favorites.count %> いいね</div>
+                                    <% end %>
+                                <% end %>
+                            <% end %>
+                        </div>
+                    </dl>
+                </div>
+            </div>
+            <div class="row mt-sm-5 pt-sm-3">
+                <h3 class="heading heading2 w-100 pb-sm-3 mb-sm-3">性格</h3>
+            </div>
+            <div class="row mt-sm-2">
+                <p><%= @post.character %></p>
+            </div>
+
+            <div class="row mt-sm-5">
+                 <h3 class="heading heading2 w-100 pb-sm-3 mb-sm-3">本文</h3>
+            </div>
+            <div class="row mt-sm-2">
+                <p><%= @post.body %></p>
             </div>
         </div>
 
-        <div class="col-sm-4 offset-sm-2">
-            <h3>コメント</h3>
+        <div class="col-sm-5 offset-sm-1">
             <!--ある投稿のコメントを全てを1つずつ取り出して表示-->
-            <p class="font-weight-bold">コメント <%= @post.post_comments.count %>件</p>
+            <h2 class="mb-sm-1 pb-sm-3 mb-sm-3 pt-sm-3 font-weight-normal">コメント <%= @post.post_comments.count %>件</h2>
             <div class="row">
                 <% @post.post_comments.each do |post_comment| %>
                    <div class="col-sm-1">
@@ -86,7 +97,8 @@
             <% end %>
         </div>
     </div>
-    <div class="row border border-2 pt-sm-3 my-sm-3 d-sm-flex justify-content-sm-center">
+
+    <div class="row border border-2 pt-sm-3 mt-sm-5 mb-sm-4 d-sm-flex justify-content-sm-center">
         <p class="font-weight-bold">
             お問い合わせは
             <%= link_to "こちら", customer_path(@post.customer.id) %>
@@ -94,6 +106,7 @@
             コメントやチャットには、思いやりの心を大切に、楽しく利用しましょう。
         </p>
     </div>
+
 </div>
 
 

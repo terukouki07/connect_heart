@@ -1,13 +1,16 @@
 <div class="col-md-2 offset-1 px-md-0">
   <div>
-    <h4 class="mb-3">CATEGORY</h4>
+    <h4 class="py-sm-2 mb-sm-3 tag_head px-sm-2">カテゴリー</h4>
     <% genres.each do |genre| %>
-      <ul class="row list-group">
-        <li class="list-group-item">
-          <span class="col-md-6"><%= link_to genre.name, genre_path(genre.id), class: "text-body" %></span>
-          <span class="col-md-6 pl-md-5 ml-md-5"><%= genre.posts.count %></span>
+      <ul class="list-group">
+        <li class="list-group-item text-center">
+          <%= link_to genre_path(genre.id) do %>
+            <span class="mr-sm-5 pr-sm-5"><%= genre.name %></span>
+            <%= genre.posts.count %>
+          <% end %>
         </li>
       </ul>
     <% end %>
   </div>
 </div>
+

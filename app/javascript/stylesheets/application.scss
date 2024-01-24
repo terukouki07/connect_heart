@@ -37,13 +37,18 @@
   background-size: cover ;
 }
 
+// posts/show.html.erb
 .heading{
-  font-weight: normal;
-  padding: 0.25em 0.5em
+  font-weight: normal ;
+  padding: 0.25em 0.5em ;
 }
 
 .heading2{
-  border-left: 6px solid #6dbec8;
-  border-bottom: 1px solid #6dbec8;
-  font-size: 2rem;
+  border-left: 6px solid #6dbec8 ;
+  border-bottom: 1px solid #6dbec8 ;
+  font-size: 2rem ;
+}
+
+.tag_head{
+  border-bottom: 1px solid #6dbec8 ;
 }
