@@ -26,8 +26,12 @@
 - ボランティアをしたいとき
 ​
 ## 設計書
-<!--テーマを設定・提出する時点では不要です-->
-後ほど作成予定
+- ER図  
+https://app.diagrams.net/#G19KS2Qo4vUVAuQ6szI4OGNqFTujy0GV3h
+- テーブル定義書  
+https://docs.google.com/spreadsheets/d/1c4ekOIpJ4J9g7uWvOt3XGH57JKp5u_Ud/edit#gid=324706804
+- 詳細設計
+https://docs.google.com/spreadsheets/d/1dp_k574wGR56PpYV8ojfSBccmc-hW65u3v3staBCt_A/edit#gid=549108681
 ​
 ## 開発環境
 - OS：Linux(CentOS)
@@ -38,6 +42,7 @@
 ​
 ## 使用素材
 <!--- 外部サービスの画像素材・音声素材を使用した場合は、必ずサービス名とURLを明記してください。-->
-<!--- アプリケーションの実装に使用したgem/bootstrapのリファレンスなどの記載は不要です。-->
-<!--- 使用しない場合は、使用素材の項目をREADMEから削除してください。-->
-使用検討中です
+- Pixabay  
+https://pixabay.com/ja/
+- hatchful  
+https://www.shopify.com/jp/tools/logo-maker
