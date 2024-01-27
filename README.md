@@ -30,7 +30,7 @@
 https://app.diagrams.net/#G19KS2Qo4vUVAuQ6szI4OGNqFTujy0GV3h
 - テーブル定義書  
 https://docs.google.com/spreadsheets/d/1c4ekOIpJ4J9g7uWvOt3XGH57JKp5u_Ud/edit#gid=324706804
-- 詳細設計
+- 詳細設計  
 https://docs.google.com/spreadsheets/d/1dp_k574wGR56PpYV8ojfSBccmc-hW65u3v3staBCt_A/edit#gid=549108681
 ​
 ## 開発環境
