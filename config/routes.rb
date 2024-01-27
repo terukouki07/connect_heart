@@ -42,6 +42,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :genres, only: [:create, :index, :edit, :update, :destroy]
     resources :post_comments, only: [:index, :destroy]
+    resources :customers, only: [:index]
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
