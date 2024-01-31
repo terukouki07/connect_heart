@@ -55,14 +55,15 @@
                 <h3 class="heading heading2 w-100 pb-sm-3 mb-sm-3">性格</h3>
             </div>
             <div class="row mt-sm-2">
-                <p><%= @post.character %></p>
+                <!--split("\n"):改行, tag(:br):段落-->
+                <p><%=safe_join(@post.character.split("\n"),tag(:br))%></p>
             </div>
 
             <div class="row mt-sm-5">
                  <h3 class="heading heading2 w-100 pb-sm-3 mb-sm-3">本文</h3>
             </div>
             <div class="row mt-sm-2">
-                <p><%= @post.body %></p>
+                <p><%=safe_join(@post.body.split("\n"),tag(:br))%></p>
             </div>
         </div>
 
