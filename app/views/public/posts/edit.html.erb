@@ -21,7 +21,7 @@
              <%= f.label :name, "動物名", class: "col-form-label" %>
            </div>
            <div class="col-sm-7">
-             <%= f.text_field :name, class: "form-control" %>
+             <%= f.text_field :name, class: "form-control", placeholder: "20文字以内" %>
            </div>
          </div>
 
@@ -31,9 +31,9 @@
            </div>
            <div class="col-sm-7">
              <%= f.radio_button :sex, :オス %>
-             <%= f.label :sex_male, "オス" %>
+             <%= f.label :sex, "オス", value: "オス" %>
              <%= f.radio_button :sex, :メス %>
-             <%= f.label :sex_female, "メス" %>
+             <%= f.label :sex, "メス", value: "メス" %>
            </div>
          </div>
 
@@ -45,7 +45,7 @@
              <%= f.text_field :age, class: "form-control", placeholder: "1" %>
            </div>
          </div>
-         
+
          <div class="row form-group">
            <div class="col-sm-3 offset-sm-1">
              <%= f.label :tag_name, "タグ", class: "col-form-label" %>
@@ -78,7 +78,7 @@
             <%= f.label :character, "性格", class: "col-form-label" %>
            </div>
            <div class="col-sm-7">
-            <%= f.text_area :character, class: "form-control" %>
+            <%= f.text_area :character, class: "form-control", placeholder: "200文字以内" %>
            </div>
          </div>
 
@@ -87,7 +87,7 @@
              <%= f.label :body, "本文", class: "col-form-label" %>
            </div>
            <div class="col-sm-7">
-             <%= f.text_area :body, class: "form-control" %>
+             <%= f.text_area :body, class: "form-control", placeholder: "200文字以内" %>
            </div>
          </div>
 
