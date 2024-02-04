@@ -12,20 +12,24 @@
                 <div class="col-sm-6 pl-sm-5">
                     <dl>
                         <div class="row pt-sm-5">
-                            <dt class="col-sm-3">状況</dt>
-                            <dd class="col-sm-9"><%= @post.status_i18n %></dd>
+                            <dt class="col-sm-4">投稿日</dt>
+                            <dd class="col-sm-8"><%= @post.created_at.strftime('%-m月%-d日') %></dd>
                         </div>
                         <div class="row">
-                            <dt class="col-sm-3">名前</dt>
-                            <dd class="col-sm-9"><%= @post.name %></dd>
+                            <dt class="col-sm-4">状況</dt>
+                            <dd class="col-sm-8"><%= @post.status_i18n %></dd>
                         </div>
                         <div class="row">
-                            <dt class="col-sm-3">性別</dt>
-                            <dd class="col-sm-9"><%= @post.sex %></dd>
+                            <dt class="col-sm-4">名前</dt>
+                            <dd class="col-sm-8"><%= @post.name %></dd>
                         </div>
                         <div class="row">
-                            <dt class="col-sm-3">年齢</dt>
-                            <dd class="col-sm-9"><%= @post.age %> 才</dd>
+                            <dt class="col-sm-4">性別</dt>
+                            <dd class="col-sm-8"><%= @post.sex %></dd>
+                        </div>
+                        <div class="row">
+                            <dt class="col-sm-4">年齢</dt>
+                            <dd class="col-sm-8"><%= @post.age %> 才</dd>
                         </div>
                         <div class="row mt-sm-2">
                             <% if @post.customer == current_customer %>
@@ -80,7 +84,7 @@
                        <span class="px-sm-1"><%= post_comment.comment %></span>
                        <span class="text-secondary"><%= post_comment.created_at.strftime('%-m月%-d日') %></span>
                        <% if post_comment.customer == current_customer %>
-                           <%= link_to "削除", post_post_comment_path(post_comment.post_id, post_comment.id), method: :delete, class: "text-danger" %>
+                           <%= link_to "削除", post_post_comment_path(post_comment.post_id, post_comment.id), method: :delete, "data-confirm" => "コメントを削除しますか？", class: "text-danger" %>
                        <% end %>
                    </div>
                 <% end %>

@@ -33,20 +33,22 @@
             <div class="row">
                 <% @posts.each do |post| %>
                     <div class="col-sm-4">
-                        <table class="table table-bordered">
-                            <tr>
-                                <td class="text-center"><%= image_tag post.get_image(130,130) %></td>
-                            </tr>
-                            <tr>
-                                <td><%= post.status_i18n %></td>
-                            </tr>
-                            <tr>
-                                <td><%= post.name %></td>
-                            </tr>
-                            <tr>
-                                <td><%= link_to "詳しく見る", post_path(post.id) %></td>
-                            </tr>
-                        </table>
+                        <%= link_to post_path(post.id) do %>
+                            <table class="table table-bordered">
+                                    <tr>
+                                        <td class="text-center"><%= image_tag post.get_image(130,130) %></td>
+                                    </tr>
+                                    <tr>
+                                        <td><%= post.created_at.strftime('%-m月%-d日') %></td>
+                                    </tr>
+                                    <tr>
+                                        <td><%= post.name %></td>
+                                    </tr>
+                                     <tr>
+                                        <td><%= post.status_i18n %></td>
+                                    </tr>
+                            </table>
+                        <% end %>
                     </div>
                 <% end %>
             </div>
