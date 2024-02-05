@@ -40,16 +40,9 @@
                                     <%= link_to "削除", post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-info"  %>
                                 </div>
                             <% else %>
-                                <!--ある投稿のfavoritesテーブルにcurrent_customerのidが含まれているかの真偽。含まれているtrue,含まれていないfalse-->
-                                <% if @post.favorited_by?(current_customer) %>
-                                    <%= link_to post_favorite_path(@post.id), method: :delete do %>
-                                        <div class="col-sm-12">♥<%= @post.favorites.count %> いいね</div>
-                                    <% end %>
-                                <% else %>
-                                    <%= link_to post_favorite_path(@post.id), method: :post do %>
-                                        <div class="col-sm-12">♡<%= @post.favorites.count %> いいね</div>
-                                    <% end %>
-                                <% end %>
+                               <span id="favorite_btn_<%= @post.id %>">
+                                   <%= render 'public/favorites/favorite', post: @post %>
+                               </span>
                             <% end %>
                         </div>
                     </dl>

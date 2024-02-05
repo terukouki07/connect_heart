@@ -1,0 +1,10 @@
+<!--ある投稿のfavoritesテーブルにcurrent_customerのidが含まれているかの真偽。含まれているtrue,含まれていないfalse-->
+<% if post.favorited_by?(current_customer) %>
+    <%= link_to post_favorite_path(post.id), method: :delete, remote: true do %>
+        <div class="col-sm-12">♥<%= post.favorites.count %> いいね</div>
+    <% end %>
+<% else %>
+    <%= link_to post_favorite_path(post.id), method: :post, remote: true do %>
+        <div class="col-sm-12">♡<%= post.favorites.count %> いいね</div>
+    <% end %>
+<% end %>
